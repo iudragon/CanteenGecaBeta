@@ -7,12 +7,8 @@ import android.content.res.ColorStateList;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
-import dragon.bakuman.iu.mymallapp.MyWishlistFragment;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -28,12 +24,9 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.lang.*;
 
-import android.os.Handler;
-
-import static dragon.bakuman.iu.mymallapp.MyWishlistFragment.wishlistAdapter;
 import static dragon.bakuman.iu.mymallapp.MySpeciallistFragment.speciallistAdapter;
+import static dragon.bakuman.iu.mymallapp.MyWishlistFragment.wishlistAdapter;
 
 public class DBqueries {
 
