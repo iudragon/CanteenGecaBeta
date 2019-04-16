@@ -14,6 +14,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
@@ -21,7 +22,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import java.util.List;
-
 public class WishlistAdapter extends RecyclerView.Adapter<WishlistAdapter.ViewHolder> {
 
     private List<WishlistModel> wishlistModelList;
@@ -83,11 +83,11 @@ public class WishlistAdapter extends RecyclerView.Adapter<WishlistAdapter.ViewHo
 
         private ImageView productImage;
         private TextView productTitle;
-//        private TextView freeCoupons;
+        //        private TextView freeCoupons;
 //        private ImageView couponIcon;
         private TextView productPrice;
         private TextView cuttedPrice;
-//        private TextView paymentMethod;
+        //        private TextView paymentMethod;
 //        private TextView rating;
 //        private TextView totalRatings;
         private View priceCut;
@@ -116,10 +116,10 @@ public class WishlistAdapter extends RecyclerView.Adapter<WishlistAdapter.ViewHo
             productTitle.setText(title);
 
 
-                productPrice.setTextColor(itemView.getContext().getResources().getColor(R.color.colorBlack));
-                cuttedPrice.setVisibility(View.VISIBLE);
-                productPrice.setText("Rs. " + price + "/-");
-                cuttedPrice.setText("Rs. " + cuttedPricevValue + "/-");
+            productPrice.setTextColor(itemView.getContext().getResources().getColor(R.color.colorBlack));
+            cuttedPrice.setVisibility(View.VISIBLE);
+            productPrice.setText("Rs. " + price + "/-");
+            cuttedPrice.setText("Rs. " + cuttedPricevValue + "/-");
 
 
             if (wishlist) {
@@ -148,7 +148,7 @@ public class WishlistAdapter extends RecyclerView.Adapter<WishlistAdapter.ViewHo
                         ProductDetailsActivity.running_wishlist_query = true;
                         if(DBqueries.wishlistModelList.size()>0) {
                             productId= DBqueries.wishlistModelList.get(index).getProductId();
-                           // productId = wishlistModelList.get(index).getProductId();
+                            // productId = wishlistModelList.get(index).getProductId();
                             Log.d("remove index:",productId+" "+index);
 
                             DBqueries.removeFromWishlist(productId, itemView.getContext(), true);
@@ -175,7 +175,6 @@ public class WishlistAdapter extends RecyclerView.Adapter<WishlistAdapter.ViewHo
 
 
 }
-
 
 
 

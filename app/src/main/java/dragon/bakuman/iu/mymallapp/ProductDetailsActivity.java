@@ -750,6 +750,33 @@ public class ProductDetailsActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
+
+        if (DBqueries.wishlistModelList.size() == 0){
+
+            DBqueries.wishlist.clear();
+
+            DBqueries.loadWishlist(ProductDetailsActivity.this, loadingDialog, true);
+            //   loadingDialog.dismiss();
+            //   Toast.makeText(getContext(), "loaded if", Toast.LENGTH_SHORT).show();
+
+        } else {
+            DBqueries.loadWishlist(ProductDetailsActivity.this, loadingDialog, true);
+            //     Toast.makeText(getContext(), "loaded else", Toast.LENGTH_SHORT).show();
+
+            //  loadingDialog.dismiss();
+        }
+
+        if (DBqueries.speciallistModelList.size() == 0){
+
+            DBqueries.speciallist.clear();
+
+            DBqueries.loadSpeciallist(ProductDetailsActivity.this, loadingDialog, true);
+        } else {
+            DBqueries.loadSpeciallist(ProductDetailsActivity.this, loadingDialog, true);
+
+            // loadingDialog.dismiss();
+        }
+
         currentUser = FirebaseAuth.getInstance().getCurrentUser();
 
 
