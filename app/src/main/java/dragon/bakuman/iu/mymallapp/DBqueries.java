@@ -174,7 +174,7 @@ public class DBqueries {
                 });
     }
 
-    public static void loadWishlist(final Context context, final Dialog dialog, final boolean loadProductData, final String from) {
+    public static void loadWishlist(final Context context, final Dialog dialog, final boolean loadProductData) {
 
         wishlist.clear();
          final Dialog loadingDialog;
@@ -313,7 +313,7 @@ public class DBqueries {
     //// SPECIAL
 
 
-    public static void loadSpeciallist(final Context context, final Dialog dialog, final boolean loadProductData, final String from) {
+    public static void loadSpeciallist(final Context context, final Dialog dialog, final boolean loadProductData) {
 
         speciallist.clear();
         final Dialog loadingDialog;
@@ -499,7 +499,7 @@ public class DBqueries {
                          if(reload==true) {
 
                             Toast.makeText(context, "reloading", Toast.LENGTH_SHORT).show();
-                            loadWishlist(context, loadingDialog, true, "remove");
+                            loadWishlist(context, loadingDialog, true);
                              wishlistAdapter.notifyDataSetChanged();
 
                         }
@@ -577,7 +577,7 @@ public class DBqueries {
                         if(reload==true) {
 
                             Toast.makeText(context, "reloading", Toast.LENGTH_SHORT).show();
-                            loadSpeciallist(context, loadingDialog, true, "remove");
+                            loadSpeciallist(context, loadingDialog, true);
                             speciallistAdapter.notifyDataSetChanged();
 
                         }

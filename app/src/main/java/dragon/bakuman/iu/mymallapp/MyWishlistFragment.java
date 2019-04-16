@@ -64,12 +64,12 @@ public class MyWishlistFragment extends Fragment {
 
             DBqueries.wishlist.clear();
 
-            DBqueries.loadWishlist(getContext(), loadingDialog, true, "wishlist");
+            DBqueries.loadWishlist(getContext(), loadingDialog, true);
          //   loadingDialog.dismiss();
          //   Toast.makeText(getContext(), "loaded if", Toast.LENGTH_SHORT).show();
 
         } else {
-            DBqueries.loadWishlist(getContext(), loadingDialog, true, "wishlist");
+            DBqueries.loadWishlist(getContext(), loadingDialog, true);
        //     Toast.makeText(getContext(), "loaded else", Toast.LENGTH_SHORT).show();
 
             //  loadingDialog.dismiss();

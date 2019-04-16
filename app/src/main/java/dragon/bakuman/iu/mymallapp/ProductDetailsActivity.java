@@ -327,7 +327,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
                                     if (DBqueries.wishlist.size() == 0) {
 
-                                        DBqueries.loadWishlist(ProductDetailsActivity.this, loadingDialog, true, "from oncreate");
+                                        DBqueries.loadWishlist(ProductDetailsActivity.this, loadingDialog, true);
 
                                     } else {
                                       //  loadingDialog.dismiss();
@@ -335,7 +335,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
                                     if (DBqueries.speciallist.size() == 0) {
 
-                                        DBqueries.loadSpeciallist(ProductDetailsActivity.this, loadingDialog, true, "from oncreate");
+                                        DBqueries.loadSpeciallist(ProductDetailsActivity.this, loadingDialog, true);
 
                                     } else {
                                      //   loadingDialog.dismiss();

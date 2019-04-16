@@ -57,9 +57,9 @@ public class MySpeciallistFragment extends Fragment {
 
             DBqueries.speciallist.clear();
 
-            DBqueries.loadSpeciallist(getContext(), loadingDialog, true, "speciallist");
+            DBqueries.loadSpeciallist(getContext(), loadingDialog, true);
         } else {
-            DBqueries.loadSpeciallist(getContext(), loadingDialog, true, "speciallist");
+            DBqueries.loadSpeciallist(getContext(), loadingDialog, true);
 
             // loadingDialog.dismiss();
         }
