@@ -62,9 +62,8 @@ public class WishlistAdapter extends RecyclerView.Adapter<WishlistAdapter.ViewHo
         String productPrice = wishlistModelList.get(position).getProductPrice();
         String cuttedPrice = wishlistModelList.get(position).getCuttedPrice();
         boolean paymentMethod = wishlistModelList.get(position).isCOD();
-        boolean inStock = wishlistModelList.get(position).isInStock();
 
-        viewHolder.setData(productId, resource, title, freeCoupons, rating, totalRatings, productPrice, cuttedPrice, paymentMethod, position, inStock);
+        viewHolder.setData(productId, resource, title, freeCoupons, rating, totalRatings, productPrice, cuttedPrice, paymentMethod, position);
 
         if (lastPosition < position) {
 
@@ -110,57 +109,17 @@ public class WishlistAdapter extends RecyclerView.Adapter<WishlistAdapter.ViewHo
 
         }
 
-        private void setData(final String productId, String resource, String title, long freeCouponsNo, String averageRate, long totalRatingsNo, String price, String cuttedPricevValue, boolean COD, final int index, boolean inStock) {
+        private void setData(final String productId, String resource, String title, long freeCouponsNo, String averageRate, long totalRatingsNo, String price, String cuttedPricevValue, boolean COD, final int index) {
 
             Glide.with(itemView.getContext()).load(resource).apply(new RequestOptions().placeholder(R.drawable.placeholdericonmini)).into(productImage);
 
             productTitle.setText(title);
-            if (freeCouponsNo != 0 && inStock) {
-//                couponIcon.setVisibility(View.VISIBLE);
-                if (freeCouponsNo == 1) {
-//                    freeCoupons.setText("Free " + freeCouponsNo + " Coupon");
-                } else {
-//                    freeCoupons.setText("Free " + freeCouponsNo + " Coupons");
-                }
-            } else {
-//                couponIcon.setVisibility(View.INVISIBLE);
-//                freeCoupons.setVisibility(View.INVISIBLE);
-            }
-
-//                LinearLayout linearLayout = (LinearLayout) rating.getParent();
-            if (inStock) {
 
 
-//                rating.setVisibility(View.VISIBLE);
-//                totalRatings.setVisibility(View.VISIBLE);
                 productPrice.setTextColor(itemView.getContext().getResources().getColor(R.color.colorBlack));
                 cuttedPrice.setVisibility(View.VISIBLE);
-//                linearLayout.setVisibility(View.VISIBLE);
-
-//                rating.setText(averageRate);
-//                totalRatings.setText("(" + totalRatingsNo + ") ratings");
                 productPrice.setText("Rs. " + price + "/-");
                 cuttedPrice.setText("Rs. " + cuttedPricevValue + "/-");
-
-                if (COD) {
-//                    paymentMethod.setVisibility(View.VISIBLE);
-                } else {
-
-//                    paymentMethod.setVisibility(View.INVISIBLE);
-                }
-            } else {
-
-//                linearLayout.setVisibility(View.INVISIBLE);
-
-//                rating.setVisibility(View.INVISIBLE);
-//                totalRatings.setVisibility(View.INVISIBLE);
-                productPrice.setText("Out of Stock");
-                productPrice.setTextColor(itemView.getContext().getResources().getColor(R.color.colorAccent));
-                cuttedPrice.setVisibility(View.INVISIBLE);
-
-//                paymentMethod.setVisibility(View.INVISIBLE);
-
-            }
 
 
             if (wishlist) {
