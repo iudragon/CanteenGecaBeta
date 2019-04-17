@@ -75,15 +75,19 @@ public class MyRewardsAdapter extends RecyclerView.Adapter<MyRewardsAdapter.View
 
         private void setData(final String type, final Date validity, final String body, String upperLimit, String lowerLimit, String discORamt, final String couponTitleReward) {
 
-            if (type.equals("Discount")) {
 
-                couponTitle.setText(couponTitleReward);
-            } else {
-                couponTitle.setText(couponTitleReward);
-            }
+            couponTitle.setText(couponTitleReward);
+
 
             final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MMM/YYYY");
-            couponExpirydDate.setText("till " + simpleDateFormat.format(validity));
+
+            if (type.contains("time")) {
+                couponExpirydDate.setText(lowerLimit + simpleDateFormat.format(validity) + upperLimit);
+
+            } else {
+                couponExpirydDate.setText(lowerLimit + type + upperLimit);
+            }
+
             couponBody.setText(body);
 
             if (useMiniLayout) {

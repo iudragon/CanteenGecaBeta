@@ -47,7 +47,7 @@ public class RewardModel {
     }
 
     public String getCouponBody() {
-        return couponBody;
+        return couponBody.replace("<br>", "\n");
     }
 
     public void setCouponBody(String couponBody) {

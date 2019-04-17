@@ -32,6 +32,8 @@ import static dragon.bakuman.iu.canteen.MyWishlistFragment.wishlistAdapter;
 
 public class DBqueries {
 
+    private String containsAtleastOneLetterPattern = "[a-zA-Z0-9._-]+@[a-z]+.[a-z]+";
+
 
     public static MyWishlistFragment wishFragment;
     public static FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
@@ -601,29 +603,18 @@ public class DBqueries {
                 if (task.isSuccessful()) {
                     final Date lastseenDate = task.getResult().getDate("Last seen");
 
-                    firebaseFirestore.collection("USERS").document("HyJKnZQSsBRvlJPvEgzKGQSY9Oy1").collection("USER_REWARDS").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    firebaseFirestore.collection("USERS").document("HyJKnZQSsBRvlJPvEgzKGQSY9Oy1").collection("USER_REWARDS").orderBy("percentage", Query.Direction.ASCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<QuerySnapshot> task) {
                             if (task.isSuccessful()) {
 
                                 for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
 
-                                    if (documentSnapshot.get("type").toString().equals("Discount") && lastseenDate.before(documentSnapshot.getDate("validity"))) {
+                                    if (documentSnapshot.get("type").toString().contains("") && lastseenDate.before(documentSnapshot.getDate("validity"))) {
                                         rewardModelList.add(new dragon.bakuman.iu.canteen.RewardModel(documentSnapshot.getId(), documentSnapshot.get("type").toString(),
                                                 documentSnapshot.get("lower_limit").toString(),
                                                 documentSnapshot.get("upper_limit").toString(),
                                                 documentSnapshot.get("percentage").toString(),
-                                                documentSnapshot.get("body").toString(),
-                                                documentSnapshot.get("coupon_title_reward").toString(),
-                                                (Date) documentSnapshot.getTimestamp("validity").toDate(),
-                                                (boolean) documentSnapshot.get("already_used")));
-                                    } else if (documentSnapshot.get("type").toString().equals("FlatRsOff") && lastseenDate.before(documentSnapshot.getDate("validity"))) {
-
-
-                                        rewardModelList.add(new dragon.bakuman.iu.canteen.RewardModel(documentSnapshot.getId(), documentSnapshot.get("type").toString(),
-                                                documentSnapshot.get("lower_limit").toString(),
-                                                documentSnapshot.get("upper_limit").toString(),
-                                                documentSnapshot.get("amount").toString(),
                                                 documentSnapshot.get("body").toString(),
                                                 documentSnapshot.get("coupon_title_reward").toString(),
                                                 (Date) documentSnapshot.getTimestamp("validity").toDate(),
