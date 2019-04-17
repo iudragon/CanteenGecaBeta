@@ -4,6 +4,8 @@ import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -23,7 +25,14 @@ public class ProductImagesAdapter extends PagerAdapter {
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
         ImageView productImage = new ImageView(container.getContext());
+
+        Animation animation = AnimationUtils.loadAnimation(container.getContext(), R.anim.fade_in);
+        productImage.setAnimation(animation);
+
         Glide.with(container.getContext()).load(productImages.get(position)).apply(new RequestOptions().placeholder(R.drawable.placeholdericon)).into(productImage);
+
+
+
         container.addView(productImage, 0);
         return productImage;
     }

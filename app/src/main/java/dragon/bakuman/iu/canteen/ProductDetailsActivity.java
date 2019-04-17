@@ -157,20 +157,11 @@ public class ProductDetailsActivity extends AppCompatActivity {
         productDetailsTabLayout = findViewById(R.id.product_details_tablayout);
         productImagesConstraintLayoutContainer = findViewById(R.id.product_images_constraint_layout_container);
 
-//        buyNowBtn = findViewById(R.id.buy_now_btn);
-
-//        couponRedeemBtn = findViewById(R.id.coupon_redemption_btn);
-
         productTitle = findViewById(R.id.product_title);
-
-//        averageRatingMiniView = findViewById(R.id.tv_product_rating_miniview);
-
-//        totalRatingMiniView = findViewById(R.id.total_ratings_miniview);
 
         productPrice = findViewById(R.id.product_price);
 
         productDetailsTabsContainer = findViewById(R.id.product_details_tab_container);
-        productDetailsOnlyContainer = findViewById(R.id.product_details_container);
 
         productOnlyDescriptionBody = findViewById(R.id.product_details_body);
         loadingDialog = new Dialog(ProductDetailsActivity.this);
@@ -219,25 +210,9 @@ public class ProductDetailsActivity extends AppCompatActivity {
                                 productPrice.setText("Rs. " + documentSnapshot.get("product_price").toString() + "/-");
 
 
-
-                                if ((boolean) documentSnapshot.get("COD")) {
-
-
-//                                    codIndicator.setVisibility(View.VISIBLE);
-//                                    tvCodIndicator.setVisibility(View.VISIBLE);
-                                } else {
-//                                    codIndicator.setVisibility(View.INVISIBLE);
-//                                    tvCodIndicator.setVisibility(View.INVISIBLE);
-                                }
-
-//                                rewardTitle.setText((long) documentSnapshot.get("free_coupons") + documentSnapshot.get("free_coupon_title").toString());
-//
-//
-//                                rewardBody.setText(documentSnapshot.get("free_coupon_body").toString());
-
                                 if ((boolean) documentSnapshot.get("use_tab_layout")) {
                                     productDetailsTabsContainer.setVisibility(View.VISIBLE);
-                                    productDetailsOnlyContainer.setVisibility(View.GONE);
+//                                    productDetailsOnlyContainer.setVisibility(View.GONE);
 
                                     productDescription = documentSnapshot.get("product_description").toString();
 
@@ -256,29 +231,10 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
                                 } else {
                                     productDetailsTabsContainer.setVisibility(View.GONE);
-                                    productDetailsOnlyContainer.setVisibility(View.VISIBLE);
+//                                    productDetailsOnlyContainer.setVisibility(View.VISIBLE);
                                     productOnlyDescriptionBody.setText(documentSnapshot.get("product_description").toString());
                                 }
 
-
-//                                totalRatings.setText((long) documentSnapshot.get("total_ratings") + " ratings");
-//                                for (int x = 0; x < 5; x++) {
-//
-//                                    TextView rating = (TextView) ratingsNoContainer.getChildAt(x);
-//                                    rating.setText(String.valueOf((long) documentSnapshot.get((5 - x) + "_star")));
-//
-//                                    ProgressBar progressBar = (ProgressBar) ratingsProgressBarContainer.getChildAt(x);
-//
-//                                    int maxProgress = Integer.parseInt(String.valueOf((long) documentSnapshot.get("total_ratings")));
-//
-//                                    progressBar.setMax(maxProgress);
-//                                    progressBar.setProgress(Integer.parseInt(String.valueOf((long) documentSnapshot.get((5 - x) + "_star"))));
-//
-//                                }
-
-//                                totalRatingsFigure.setText(String.valueOf((long) documentSnapshot.get("total_ratings")));
-//
-//                                averageRating.setText(documentSnapshot.get("average_rating").toString());
 
                                 productDetailsViewPager.setAdapter(new ProductDetailsAdapter(getSupportFragmentManager(), productDetailsTabLayout.getTabCount(), productDescription, productOtherDetails, productSpecificationModelList));
 
@@ -292,6 +248,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
                                     } else {
                                         //  loadingDialog.dismiss();
+
                                     }
 
                                     if (DBqueries.speciallist.size() == 0) {
@@ -306,22 +263,6 @@ public class ProductDetailsActivity extends AppCompatActivity {
                                 } else {
                                     //  loadingDialog.dismiss();
                                 }
-
-//                                if (DBqueries.myRatedIds.contains(productID)) {
-//
-//                                    int index = DBqueries.myRatedIds.indexOf(productID);
-//
-//                                    initialRating = Integer.parseInt(String.valueOf(DBqueries.myRating.get(index))) - 1;
-//
-//                                    setRating(initialRating);
-//                                }
-
-//                                if (DBqueries.cartList.contains(productID)) {
-//
-//                                    ALREADY_ADDED_TO_CART = true;
-//                                } else {
-//                                    ALREADY_ADDED_TO_CART = false;
-//                                }
 
                                 if (DBqueries.wishlist.contains(productID)) {
 
@@ -398,7 +339,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
                                         if (DBqueries.wishlistModelList.size() != 0) {
 
-                                            DBqueries.wishlistModelList.add(new WishlistModel(productID, documentSnapshot.get("product_image_1").toString(), documentSnapshot.get("product_title").toString(), (long) documentSnapshot.get("free_coupons"), documentSnapshot.get("average_rating").toString(), (long) documentSnapshot.get("total_ratings"), documentSnapshot.get("product_price").toString(),  (boolean) documentSnapshot.get("COD")));
+                                            DBqueries.wishlistModelList.add(new WishlistModel(productID, documentSnapshot.get("product_image_1").toString(), documentSnapshot.get("product_title").toString(), (long) documentSnapshot.get("free_coupons"), documentSnapshot.get("average_rating").toString(), (long) documentSnapshot.get("total_ratings"), documentSnapshot.get("product_price").toString(), (boolean) documentSnapshot.get("COD")));
 
                                         }
 
@@ -578,6 +519,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
             DBqueries.speciallist.clear();
 
             DBqueries.loadSpeciallist(ProductDetailsActivity.this, loadingDialog, true);
+
 
 
         } else {
