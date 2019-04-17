@@ -2,6 +2,7 @@ package dragon.bakuman.iu.canteen;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.app.Notification;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.res.ColorStateList;
@@ -10,6 +11,8 @@ import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -39,6 +42,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static dragon.bakuman.iu.canteen.App.CHANNEL_1_ID;
+import static dragon.bakuman.iu.canteen.App.CHANNEL_2_ID;
 import static dragon.bakuman.iu.canteen.RegisterActivity.setSignUpFragment;
 
 public class ProductDetailsActivity extends AppCompatActivity {
@@ -53,6 +58,11 @@ public class ProductDetailsActivity extends AppCompatActivity {
     private TextView averageRatingMiniView;
     private TextView totalRatingMiniView;
     private TextView productPrice;
+
+    public static boolean WISHLIST_BTN_CLICKED = false;
+    public static boolean SPECIALIST_BTN_CLICKED = false;
+
+    private NotificationManagerCompat notificationManager;
 
 
 //    private ImageView codIndicator;
@@ -150,6 +160,11 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        SPECIALIST_BTN_CLICKED = false;
+        WISHLIST_BTN_CLICKED = false;
+
+        notificationManager = NotificationManagerCompat.from(this);
 
         productImagesViewPager = findViewById(R.id.product_images_viewpager);
         viewPagerIndicator = findViewById(R.id.viewpager_indicator);
@@ -273,6 +288,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
                                 } else {
                                     //  loadingDialog.dismiss();
+
                                 }
 
                                 if (DBqueries.wishlist.contains(productID)) {
@@ -320,6 +336,8 @@ public class ProductDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                WISHLIST_BTN_CLICKED = true;
+                SPECIALIST_BTN_CLICKED = false;
                 if (currentUser == null) {
 
                     Toast.makeText(ProductDetailsActivity.this, "Icon: Available to eat", Toast.LENGTH_SHORT).show();
@@ -350,6 +368,14 @@ public class ProductDetailsActivity extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
+
+                                        if (WISHLIST_BTN_CLICKED){
+                                            sendChannel2();
+                                        }
+
+
+
+
 
                                         if (DBqueries.wishlistModelList.size() != 0) {
 
@@ -382,11 +408,16 @@ public class ProductDetailsActivity extends AppCompatActivity {
             }
         });
 
+
+
         //// SPECIAL
 
         addToSpeciallistBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                WISHLIST_BTN_CLICKED = false;
+                SPECIALIST_BTN_CLICKED = true;
 
                 if (currentUser == null) {
 
@@ -419,6 +450,10 @@ public class ProductDetailsActivity extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
+
+                                        if (SPECIALIST_BTN_CLICKED){
+                                            sendChannel1();
+                                        }
 
 
                                         if (DBqueries.speciallistModelList.size() != 0) {
@@ -456,6 +491,8 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
         //// SPECIAL
 
+        WISHLIST_BTN_CLICKED = false;
+        SPECIALIST_BTN_CLICKED = false;
 
         productDetailsViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(productDetailsTabLayout));
         productDetailsTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -516,13 +553,19 @@ public class ProductDetailsActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
+        if (WISHLIST_BTN_CLICKED){
+            sendChannel2();
+        }
+
+        if (SPECIALIST_BTN_CLICKED){
+            sendChannel1();
+        }
 
 
         productDetailsTabsContainer.setVisibility(View.GONE);
 
 
         if (DBqueries.wishlistModelList.size() == 0) {
-
 
 
             DBqueries.wishlist.clear();
@@ -539,8 +582,6 @@ public class ProductDetailsActivity extends AppCompatActivity {
         if (DBqueries.speciallistModelList.size() == 0) {
 
 
-
-
             DBqueries.speciallist.clear();
 
             DBqueries.loadSpeciallist(ProductDetailsActivity.this, loadingDialog, true);
@@ -549,12 +590,9 @@ public class ProductDetailsActivity extends AppCompatActivity {
         } else {
 
 
-
-
             DBqueries.loadSpeciallist(ProductDetailsActivity.this, loadingDialog, true);
 
         }
-
 
 
         currentUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -644,14 +682,42 @@ public class ProductDetailsActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 
-            productDetailsActivity = null;
-            super.onBackPressed();
-
-        }
-
-
+        productDetailsActivity = null;
+        super.onBackPressed();
 
     }
+
+    public void sendChannel1() {
+
+
+        Notification notification = new NotificationCompat.Builder(ProductDetailsActivity.this, CHANNEL_1_ID)
+                .setSmallIcon(R.drawable.githublogo)
+                .setContentTitle(documentSnapshot.get("product_title").toString())
+                .setContentText("Special of the day!")
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setCategory(NotificationCompat.CATEGORY_MESSAGE)
+                .build();
+
+        notificationManager.notify(1, notification);
+
+    }
+
+    private void sendChannel2() {
+
+        Notification notification = new NotificationCompat.Builder(this, CHANNEL_2_ID)
+                .setSmallIcon(R.drawable.connect)
+                .setContentTitle(documentSnapshot.get("product_title").toString())
+                .setContentText("Available Now!")
+                .setPriority(NotificationCompat.PRIORITY_LOW)
+                .build();
+
+        notificationManager.notify(2, notification);
+
+    }
+
+
+
+}
 
 
 

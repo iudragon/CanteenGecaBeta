@@ -10,6 +10,7 @@
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
 
     <application
+        android:name=".App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -17,28 +18,28 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="dragon.bakuman.iu.canteen.OTPverificationActivity"
-            android:screenOrientation="portrait"
-            ></activity>
-        <activity android:name="dragon.bakuman.iu.canteen.ViewAllActivity"
-            android:screenOrientation="portrait"
-            />
+        <activity
+            android:name="dragon.bakuman.iu.canteen.OTPverificationActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name="dragon.bakuman.iu.canteen.ViewAllActivity"
+            android:screenOrientation="portrait" />
 
 
-        <activity android:name="dragon.bakuman.iu.canteen.OrderDetailsActivity"
-            android:screenOrientation="portrait"
-            />
-        <activity android:name="dragon.bakuman.iu.canteen.ProductDetailsActivity"
-            android:screenOrientation="portrait"
-            />
-        <activity android:name="dragon.bakuman.iu.canteen.CategoryActivity"
-            android:screenOrientation="portrait"
-            />
+        <activity
+            android:name="dragon.bakuman.iu.canteen.OrderDetailsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="dragon.bakuman.iu.canteen.ProductDetailsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="dragon.bakuman.iu.canteen.CategoryActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name="dragon.bakuman.iu.canteen.MainActivity"
             android:label="@string/title_activity_main"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:theme="@style/AppTheme.NoActionBar">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -313,16 +313,24 @@ public class MainActivity extends AppCompatActivity
                         invalidateOptionsMenu();
 
                         setFragment(new HomeFragment(), HOME_FRAGMENT);
+                        navigationView.getMenu().getItem(0).setChecked(true);
+
 
                     } else if (id == R.id.nav_my_wishlist) {
                         gotoFragment(getString(R.string.available_to_eat), new MyWishlistFragment(), WISHLIST_FRAGMENT);
+                        navigationView.getMenu().getItem(1).setChecked(true);
+
 
                     } else if (id == R.id.nav_my_speciallist) {
                         gotoFragment(getString(R.string.special_of_the_day), new MySpeciallistFragment(), SPECIALLIST_FRAGMENT);
+                        navigationView.getMenu().getItem(2).setChecked(true);
+
 
                     } else if (id == R.id.nav_my_rewards) {
 
                         gotoFragment("About", new MyRewardsFragment(), REWARDS_FRAGMENT);
+                        navigationView.getMenu().getItem(3).setChecked(true);
+
                     } else if (id == R.id.nav_sign_out) {
                         FirebaseAuth.getInstance().signOut();
 
