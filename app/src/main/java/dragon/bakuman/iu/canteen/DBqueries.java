@@ -32,7 +32,6 @@ import static dragon.bakuman.iu.canteen.MyWishlistFragment.wishlistAdapter;
 
 public class DBqueries {
 
-    private String containsAtleastOneLetterPattern = "[a-zA-Z0-9._-]+@[a-z]+.[a-z]+";
 
 
     public static MyWishlistFragment wishFragment;

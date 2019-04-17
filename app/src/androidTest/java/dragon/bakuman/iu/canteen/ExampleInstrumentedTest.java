@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("dragon.bakuman.iu.mymallapp", appContext.getPackageName());
+        assertEquals("dragon.bakuman.iu.canteen", appContext.getPackageName());
     }
 }
