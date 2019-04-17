@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="dragon.bakuman.iu.mymallapp">
+    package="dragon.bakuman.iu.canteen">
 
     <uses-permission android:name="android.permission.READ_SMS" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
@@ -17,34 +17,34 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".OTPverificationActivity"
+        <activity android:name="dragon.bakuman.iu.canteen.OTPverificationActivity"
             android:screenOrientation="portrait"
             ></activity>
-        <activity android:name=".ViewAllActivity"
+        <activity android:name="dragon.bakuman.iu.canteen.ViewAllActivity"
             android:screenOrientation="portrait"
             />
-        <activity android:name=".MyAddressesActivity"
+        <activity android:name="dragon.bakuman.iu.canteen.MyAddressesActivity"
             android:screenOrientation="portrait"
             />
         <activity
-            android:name=".AddAddressActivity"
+            android:name="dragon.bakuman.iu.canteen.AddAddressActivity"
             android:theme="@style/RedProgressbar"
             android:screenOrientation="portrait"
             />
-        <activity android:name=".DeliveryActivity"
+        <activity android:name="dragon.bakuman.iu.canteen.DeliveryActivity"
             android:screenOrientation="portrait"
             />
-        <activity android:name=".OrderDetailsActivity"
+        <activity android:name="dragon.bakuman.iu.canteen.OrderDetailsActivity"
             android:screenOrientation="portrait"
             />
-        <activity android:name=".ProductDetailsActivity"
+        <activity android:name="dragon.bakuman.iu.canteen.ProductDetailsActivity"
             android:screenOrientation="portrait"
             />
-        <activity android:name=".CategoryActivity"
+        <activity android:name="dragon.bakuman.iu.canteen.CategoryActivity"
             android:screenOrientation="portrait"
             />
         <activity
-            android:name=".MainActivity"
+            android:name="dragon.bakuman.iu.canteen.MainActivity"
             android:label="@string/title_activity_main"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" >
@@ -57,10 +57,10 @@
 
         </activity>
         <activity
-            android:name=".RegisterActivity"
+            android:name="dragon.bakuman.iu.canteen.RegisterActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".SplashActivity"
+            android:name="dragon.bakuman.iu.canteen.SplashActivity"
             android:screenOrientation="portrait"
             android:theme="@style/SplashTheme">
 
