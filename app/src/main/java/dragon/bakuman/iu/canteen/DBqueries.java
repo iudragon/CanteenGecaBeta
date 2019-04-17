@@ -50,9 +50,9 @@ public class DBqueries {
 
     public static List<Long> myRating = new ArrayList<>();
 
-    public static List<String> cartList = new ArrayList<>();
 
-    public static List<CartItemModel> cartItemModelList = new ArrayList<>();
+
+
 
     public static int selectedAddress = -1;
 
@@ -127,7 +127,7 @@ public class DBqueries {
                                         horizontalProductScrollModelList.add(new HorizontalProductScrollModel(documentSnapshot.get("product_ID_" + x).toString(), documentSnapshot.get("product_image_" + x).toString(), documentSnapshot.get("product_title_" + x).toString(), documentSnapshot.get("product_subtitle_" + x).toString(), documentSnapshot.get("product_price_" + x).toString()));
 
 
-                                        viewAllProductlist.add(new WishlistModel(documentSnapshot.get("product_ID_" + x).toString(), documentSnapshot.get("product_image_" + x).toString(), documentSnapshot.get("product_full_title_" + x).toString(), (long) documentSnapshot.get("free_coupons_" + x), documentSnapshot.get("average_rating_" + x).toString(), (long) documentSnapshot.get("total_ratings_" + x), documentSnapshot.get("product_price_" + x).toString(), (boolean) documentSnapshot.get("COD_" + x)));
+                                        viewAllProductlist.add(new WishlistModel(documentSnapshot.get("product_ID_" + x).toString(), documentSnapshot.get("product_image_" + x).toString(), documentSnapshot.get("product_full_title_" + x).toString(), documentSnapshot.get("product_price_" + x).toString()));
 
                                     }
 
@@ -250,15 +250,7 @@ public class DBqueries {
                                             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                                                 if (task.isSuccessful()) {
 
-                                                    if (task.getResult().getDocuments().size() < (long) documentSnapshot.get("stock_quantity")) {
-
-                                                        wishlistModelList.add(new WishlistModel(productId, documentSnapshot.get("product_image_1").toString(), documentSnapshot.get("product_title").toString(), (long) documentSnapshot.get("free_coupons"), documentSnapshot.get("average_rating").toString(), (long) documentSnapshot.get("total_ratings"), documentSnapshot.get("product_price").toString(),  (boolean) documentSnapshot.get("COD")));
-
-
-                                                    } else {
-
-                                                        wishlistModelList.add(new WishlistModel(productId, documentSnapshot.get("product_image_1").toString(), documentSnapshot.get("product_title").toString(), (long) documentSnapshot.get("free_coupons"), documentSnapshot.get("average_rating").toString(), (long) documentSnapshot.get("total_ratings"), documentSnapshot.get("product_price").toString(),(boolean) documentSnapshot.get("COD")));
-                                                    }
+                                                        wishlistModelList.add(new WishlistModel(productId, documentSnapshot.get("product_image_1").toString(), documentSnapshot.get("product_title").toString(), documentSnapshot.get("product_price").toString()));
 
                                                     if(wishlistAdapter==null)
                                                     {
@@ -387,17 +379,10 @@ public class DBqueries {
                                             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                                                 if (task.isSuccessful()) {
 
-                                                    if (task.getResult().getDocuments().size() < (long) documentSnapshot.get("stock_quantity")) {
-
-                                                        speciallistModelList.add(new SpeciallistModel(productId, documentSnapshot.get("product_image_1").toString(), documentSnapshot.get("product_title").toString(), (long) documentSnapshot.get("free_coupons"), documentSnapshot.get("average_rating").toString(), (long) documentSnapshot.get("total_ratings"), documentSnapshot.get("product_price").toString(),  (boolean) documentSnapshot.get("COD")));
 
 
-                                                    } else {
+                                                        speciallistModelList.add(new SpeciallistModel(productId, documentSnapshot.get("product_image_1").toString(), documentSnapshot.get("product_title").toString(), documentSnapshot.get("product_price").toString()));
 
-                                                        speciallistModelList.add(new SpeciallistModel(productId, documentSnapshot.get("product_image_1").toString(), documentSnapshot.get("product_title").toString(), (long) documentSnapshot.get("free_coupons"), documentSnapshot.get("average_rating").toString(), (long) documentSnapshot.get("total_ratings"), documentSnapshot.get("product_price").toString(),  (boolean) documentSnapshot.get("COD")));
-
-
-                                                    }
 
 
                                                     if(speciallistAdapter==null)
@@ -484,6 +469,7 @@ public class DBqueries {
             public void onComplete(@NonNull Task<Void> task) {
 
                 if (task.isSuccessful()) {
+
                 //    Log.d("list=",task.getResult().toString());
                     if (wishlistModelList.size() > 0) {
 
@@ -608,49 +594,7 @@ public class DBqueries {
 
 
 
-    public static void loadAddresses(final Context context, final Dialog loadingDialog) {
 
-        addressesModelList.clear();
-
-        firebaseFirestore.collection("USERS").document(FirebaseAuth.getInstance().getUid()).collection("USER_DATA").document("MY_ADDRESSES").get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-
-                    Intent deliveryIntent;
-                    if ((long) task.getResult().get("list_size") == 0) {
-                        deliveryIntent = new Intent(context, AddAddressActivity.class);
-
-                        deliveryIntent.putExtra("INTENT", "deliveryIntent");
-
-                    } else {
-
-                        for (long x = 1; x < (long) task.getResult().get("list_size") + 1; x++) {
-                            addressesModelList.add(new AddressesModel(task.getResult().get("fullname_" + x).toString(),
-                                    task.getResult().get("address_" + x).toString(),
-                                    task.getResult().get("pincode_" + x).toString(),
-                                    (boolean) task.getResult().get("selected_" + x),
-                                    task.getResult().get("mobile_no_" + x).toString()));
-
-                            if ((boolean) task.getResult().get("selected_" + x)) {
-
-                                selectedAddress = Integer.parseInt(String.valueOf(x - 1));
-                            }
-                        }
-                        deliveryIntent = new Intent(context, DeliveryActivity.class);
-
-                    }
-                    context.startActivity(deliveryIntent);
-                } else {
-
-                    String error = task.getException().getMessage();
-                    Toast.makeText(context, error, Toast.LENGTH_SHORT).show();
-                }
-
-                loadingDialog.dismiss();
-            }
-        });
-    }
 
 
     public static void loadRewards(final Context context, final Dialog loadingDialog, final Boolean onRewardFragment) {
@@ -724,13 +668,12 @@ public class DBqueries {
         speciallist.clear();
         wishlistModelList.clear();
         speciallistModelList.clear();
-        cartList.clear();
-        cartItemModelList.clear();
-
         myRatedIds.clear();
         myRating.clear();
         addressesModelList.clear();
         rewardModelList.clear();
     }
+
+
 
 }

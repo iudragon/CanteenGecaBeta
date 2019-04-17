@@ -55,13 +55,9 @@ public class SpeciallistAdapter extends RecyclerView.Adapter<SpeciallistAdapter.
         String productId = speciallistModelList.get(position).getProductId();
         String resource = speciallistModelList.get(position).getProductImage();
         String title = speciallistModelList.get(position).getProductTitle();
-        long freeCoupons = speciallistModelList.get(position).getFreeCoupons();
-        String rating = speciallistModelList.get(position).getRating();
-        long totalRatings = speciallistModelList.get(position).getTotalRatings();
         String productPrice = speciallistModelList.get(position).getProductPrice();
-        boolean paymentMethod = speciallistModelList.get(position).isCOD();
 
-        viewHolder.setData(productId, resource, title, freeCoupons, rating, totalRatings, productPrice, paymentMethod, position);
+        viewHolder.setData(productId, resource, title, productPrice, position);
 
         if (lastPosition < position) {
 
@@ -104,7 +100,7 @@ public class SpeciallistAdapter extends RecyclerView.Adapter<SpeciallistAdapter.
 
         }
 
-        private void setData(final String productId, String resource, String title, long freeCouponsNo, String averageRate, long totalRatingsNo, String price, boolean COD, final int index) {
+        private void setData(final String productId, String resource, String title, String price,  final int index) {
 
             Glide.with(itemView.getContext()).load(resource).apply(new RequestOptions().placeholder(R.drawable.placeholdericonmini)).into(productImage);
 

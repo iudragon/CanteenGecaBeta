@@ -54,13 +54,9 @@ public class WishlistAdapter extends RecyclerView.Adapter<WishlistAdapter.ViewHo
         String productId = wishlistModelList.get(position).getProductId();
         String resource = wishlistModelList.get(position).getProductImage();
         String title = wishlistModelList.get(position).getProductTitle();
-        long freeCoupons = wishlistModelList.get(position).getFreeCoupons();
-        String rating = wishlistModelList.get(position).getRating();
-        long totalRatings = wishlistModelList.get(position).getTotalRatings();
         String productPrice = wishlistModelList.get(position).getProductPrice();
-        boolean paymentMethod = wishlistModelList.get(position).isCOD();
 
-        viewHolder.setData(productId, resource, title, freeCoupons, rating, totalRatings, productPrice, paymentMethod, position);
+        viewHolder.setData(productId, resource, title, productPrice, position);
 
         if (lastPosition < position) {
 
@@ -103,7 +99,7 @@ public class WishlistAdapter extends RecyclerView.Adapter<WishlistAdapter.ViewHo
 
         }
 
-        private void setData(final String productId, String resource, String title, long freeCouponsNo, String averageRate, long totalRatingsNo, String price, boolean COD, final int index) {
+        private void setData(final String productId, String resource, String title, String price, final int index) {
 
             Glide.with(itemView.getContext()).load(resource).apply(new RequestOptions().placeholder(R.drawable.placeholdericonmini)).into(productImage);
 

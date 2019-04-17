@@ -10,17 +10,12 @@ public class WishlistModel {
     private long totalRatings;
     private String productPrice;
     private String cttedPrice;
-    private boolean COD;
 
-    public WishlistModel(String productId, String productImage, String productTitle, long freeCoupons, String rating, long totalRatings, String productPrice, boolean COD) {
+    public WishlistModel(String productId, String productImage, String productTitle, String productPrice) {
         this.productId = productId;
         this.productImage = productImage;
         this.productTitle = productTitle;
-        this.freeCoupons = freeCoupons;
-        this.rating = rating;
-        this.totalRatings = totalRatings;
         this.productPrice = productPrice;
-        this.COD = COD;
     }
 
 
@@ -48,29 +43,6 @@ public class WishlistModel {
         this.productTitle = productTitle;
     }
 
-    public long getFreeCoupons() {
-        return freeCoupons;
-    }
-
-    public void setFreeCoupons(long freeCoupons) {
-        this.freeCoupons = freeCoupons;
-    }
-
-    public String getRating() {
-        return rating;
-    }
-
-    public void setRating(String rating) {
-        this.rating = rating;
-    }
-
-    public long getTotalRatings() {
-        return totalRatings;
-    }
-
-    public void setTotalRatings(long totalRatings) {
-        this.totalRatings = totalRatings;
-    }
 
     public String getProductPrice() {
         return productPrice;
@@ -81,11 +53,4 @@ public class WishlistModel {
     }
 
 
-    public boolean isCOD() {
-        return COD;
-    }
-
-    public void setCOD(boolean COD) {
-        this.COD = COD;
-    }
 }
