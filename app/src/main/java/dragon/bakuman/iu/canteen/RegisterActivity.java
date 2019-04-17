@@ -35,6 +35,8 @@ public class RegisterActivity extends AppCompatActivity {
         }
     }
 
+
+
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
 

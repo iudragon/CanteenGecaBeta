@@ -7,6 +7,7 @@ import android.content.res.ColorStateList;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
@@ -31,6 +32,8 @@ import static dragon.bakuman.iu.canteen.MyWishlistFragment.wishlistAdapter;
 
 public class DBqueries {
 
+
+
     public static MyWishlistFragment wishFragment;
     public static FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
 
@@ -49,9 +52,6 @@ public class DBqueries {
     public static List<String> myRatedIds = new ArrayList<>();
 
     public static List<Long> myRating = new ArrayList<>();
-
-
-
 
 
     public static int selectedAddress = -1;
@@ -170,8 +170,10 @@ public class DBqueries {
 
     public static void loadWishlist(final Context context, final Dialog dialog, final boolean loadProductData) {
 
+        ProductDetailsActivity.should_allow_back_key = false;
+
         wishlist.clear();
-         final Dialog loadingDialog;
+        final Dialog loadingDialog;
         loadingDialog = new Dialog(context);
         loadingDialog.setContentView(R.layout.loading_progress_dialog);
 
@@ -183,23 +185,21 @@ public class DBqueries {
         firebaseFirestore.collection("USERS").document("HyJKnZQSsBRvlJPvEgzKGQSY9Oy1").collection("USER_DATA").document("MY_WISHLIST").get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
 
 
-
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                  if (task.isSuccessful()) {
+                if (task.isSuccessful()) {
 
-                      if((long)task.getResult().get("list_size")==0)
-                    {
+                    if ((long) task.getResult().get("list_size") == 0) {
                         loadingDialog.show();
-                         wishlistModelList.clear();
+                        wishlistModelList.clear();
                         wishlistAdapter = new WishlistAdapter(DBqueries.wishlistModelList, false);
 
-                       wishlistAdapter.notifyDataSetChanged();
+                        wishlistAdapter.notifyDataSetChanged();
                     }
-                    for ( long x = 0; x < (long)task.getResult().get("list_size"); x++) {
+                    for (long x = 0; x < (long) task.getResult().get("list_size"); x++) {
 
-                         if(! wishlist.contains(task.getResult().get("product_ID_" + x).toString())) {
-                                   wishlist.add(task.getResult().get("product_ID_" + x).toString());
+                        if (!wishlist.contains(task.getResult().get("product_ID_" + x).toString())) {
+                            wishlist.add(task.getResult().get("product_ID_" + x).toString());
                         }
 
                         if (DBqueries.wishlist.contains(ProductDetailsActivity.productID)) {
@@ -250,10 +250,9 @@ public class DBqueries {
                                             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                                                 if (task.isSuccessful()) {
 
-                                                        wishlistModelList.add(new WishlistModel(productId, documentSnapshot.get("product_image_1").toString(), documentSnapshot.get("product_title").toString(), documentSnapshot.get("product_price").toString()));
+                                                    wishlistModelList.add(new WishlistModel(productId, documentSnapshot.get("product_image_1").toString(), documentSnapshot.get("product_title").toString(), documentSnapshot.get("product_price").toString()));
 
-                                                    if(wishlistAdapter==null)
-                                                    {
+                                                    if (wishlistAdapter == null) {
                                                         wishlistAdapter = new WishlistAdapter(wishlistModelList, false);
                                                         wishlistAdapter.notifyDataSetChanged();
                                                         //do nothing
@@ -268,7 +267,7 @@ public class DBqueries {
                                             }
                                         });
 
-                                         } else {
+                                    } else {
 
                                         String error = task.getException().getMessage();
                                         Toast.makeText(context, error, Toast.LENGTH_SHORT).show();
@@ -278,12 +277,12 @@ public class DBqueries {
                         }
 
                     }
-                  //  loadingDialog.dismiss();
+                    //  loadingDialog.dismiss();
 
                 } else {
                     String error = task.getException().getMessage();
                     Toast.makeText(context, error, Toast.LENGTH_SHORT).show();
-                 //   loadingDialog.dismiss();
+                    //   loadingDialog.dismiss();
 
                 }
 
@@ -301,6 +300,9 @@ public class DBqueries {
 
     public static void loadSpeciallist(final Context context, final Dialog dialog, final boolean loadProductData) {
 
+        ProductDetailsActivity.should_allow_back_key = false;
+
+
         speciallist.clear();
         final Dialog loadingDialog;
         loadingDialog = new Dialog(context);
@@ -314,16 +316,16 @@ public class DBqueries {
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {
 
-                    if((long)task.getResult().get("list_size")==0) {
+                    if ((long) task.getResult().get("list_size") == 0) {
                         loadingDialog.show();
                         speciallistModelList.clear();
 
-                        speciallistAdapter=new SpeciallistAdapter(DBqueries.speciallistModelList, false);
-         speciallistAdapter.notifyDataSetChanged();
+                        speciallistAdapter = new SpeciallistAdapter(DBqueries.speciallistModelList, false);
+                        speciallistAdapter.notifyDataSetChanged();
                     }
-               //     speciallistAdapter.notifyDataSetChanged();
+                    //     speciallistAdapter.notifyDataSetChanged();
                     for (long x = 0; x < (long) task.getResult().get("list_size"); x++) {
-                        if(! speciallist.contains(task.getResult().get("product_ID_" + x).toString())) {
+                        if (!speciallist.contains(task.getResult().get("product_ID_" + x).toString())) {
 
                             speciallist.add(task.getResult().get("product_ID_" + x).toString());
 
@@ -380,13 +382,10 @@ public class DBqueries {
                                                 if (task.isSuccessful()) {
 
 
-
-                                                        speciallistModelList.add(new SpeciallistModel(productId, documentSnapshot.get("product_image_1").toString(), documentSnapshot.get("product_title").toString(), documentSnapshot.get("product_price").toString()));
-
+                                                    speciallistModelList.add(new SpeciallistModel(productId, documentSnapshot.get("product_image_1").toString(), documentSnapshot.get("product_title").toString(), documentSnapshot.get("product_price").toString()));
 
 
-                                                    if(speciallistAdapter==null)
-                                                    {
+                                                    if (speciallistAdapter == null) {
                                                         speciallistAdapter = new SpeciallistAdapter(speciallistModelList, false);
                                                         speciallistAdapter.notifyDataSetChanged();
                                                         //do nothing
@@ -394,7 +393,6 @@ public class DBqueries {
 
                                                     speciallistAdapter.notifyDataSetChanged();
                                                     loadingDialog.dismiss();
-
 
 
                                                 } else {
@@ -406,17 +404,17 @@ public class DBqueries {
                                             }
                                         });
 
-                                       // loadingDialog.dismiss();
+                                        // loadingDialog.dismiss();
 
 
                                     } else {
-                                       // loadingDialog.dismiss();
+                                        // loadingDialog.dismiss();
 
                                         String error = task.getException().getMessage();
                                         Toast.makeText(context, error, Toast.LENGTH_SHORT).show();
                                     }
 
-                                  //  loadingDialog.dismiss();
+                                    //  loadingDialog.dismiss();
                                 }
                             });
                         }
@@ -443,25 +441,25 @@ public class DBqueries {
 
         loadingDialog.setCancelable(false);
 
-      //  loadingDialog.getWindow().setBackgroundDrawable(getDrawable(R.drawable.slider_background));
+        //  loadingDialog.getWindow().setBackgroundDrawable(getDrawable(R.drawable.slider_background));
         loadingDialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
         loadingDialog.show();
 
         //final String removeProductId = wishlist.get(index);
-        final  int index=wishlist.indexOf(removeProductId);
-        Log.d("remove id",removeProductId);
-        Toast.makeText(context, "remove="+index, Toast.LENGTH_SHORT).show();
+        final int index = wishlist.indexOf(removeProductId);
+        Log.d("remove id", removeProductId);
+        Toast.makeText(context, "remove=" + index, Toast.LENGTH_SHORT).show();
         wishlist.remove(index);
 
-     //   Toast.makeText(context, "remove index="+index, Toast.LENGTH_SHORT).show();
+        //   Toast.makeText(context, "remove index="+index, Toast.LENGTH_SHORT).show();
         Map<String, Object> updateWishlist = new HashMap<>();
-     //   Toast.makeText(context, "new size="+wishlist.size(), Toast.LENGTH_SHORT).show();
+        //   Toast.makeText(context, "new size="+wishlist.size(), Toast.LENGTH_SHORT).show();
         for (int x = 0; x < wishlist.size(); x++) {
-          //  if(removeProductId!=wishlist.get(x))
+            //  if(removeProductId!=wishlist.get(x))
             updateWishlist.put("product_ID_" + x, wishlist.get(x));
         }
-      //  Toast.makeText(context, "update size="+wishlist.size(), Toast.LENGTH_SHORT).show();
+        //  Toast.makeText(context, "update size="+wishlist.size(), Toast.LENGTH_SHORT).show();
         updateWishlist.put("list_size", (long) wishlist.size());
 
         firebaseFirestore.collection("USERS").document(FirebaseAuth.getInstance().getUid()).collection("USER_DATA").document("MY_WISHLIST").set(updateWishlist).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -470,17 +468,17 @@ public class DBqueries {
 
                 if (task.isSuccessful()) {
 
-                //    Log.d("list=",task.getResult().toString());
+                    //    Log.d("list=",task.getResult().toString());
                     if (wishlistModelList.size() > 0) {
 
 
                         wishlistModelList.remove(index);
 
-                         if(reload==true) {
+                        if (reload == true) {
 
                             Toast.makeText(context, "reloading", Toast.LENGTH_SHORT).show();
                             loadWishlist(context, loadingDialog, true);
-                             wishlistAdapter.notifyDataSetChanged();
+                            wishlistAdapter.notifyDataSetChanged();
 
                         }
                         wishlistAdapter.notifyDataSetChanged();
@@ -501,7 +499,7 @@ public class DBqueries {
                     wishlist.add(index, removeProductId);
 
                     String error = task.getException().getMessage();
-                    Toast.makeText(context, "err="+error, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "err=" + error, Toast.LENGTH_SHORT).show();
                 }
 
                 ProductDetailsActivity.running_wishlist_query = false;
@@ -528,17 +526,17 @@ public class DBqueries {
         loadingDialog.show();
         //final String removeProductId = speciallist.get(index);
 
-      //  speciallist.remove(index);
+        //  speciallist.remove(index);
 
-        final  int index=speciallist.indexOf(removeProductId);
-        Log.d("remove id",removeProductId);
-     //   Toast.makeText(context, "remove="+index, Toast.LENGTH_SHORT).show();
+        final int index = speciallist.indexOf(removeProductId);
+        Log.d("remove id", removeProductId);
+        //   Toast.makeText(context, "remove="+index, Toast.LENGTH_SHORT).show();
         speciallist.remove(index);
 
         Map<String, Object> updateSpeciallist = new HashMap<>();
 
         for (int x = 0; x < speciallist.size(); x++) {
-            if(removeProductId!=speciallist.get(x))
+            if (removeProductId != speciallist.get(x))
 
                 updateSpeciallist.put("product_ID_" + x, speciallist.get(x));
         }
@@ -554,7 +552,7 @@ public class DBqueries {
 
                         speciallistModelList.remove(index);
 
-                        if(reload==true) {
+                        if (reload == true) {
 
                             Toast.makeText(context, "reloading", Toast.LENGTH_SHORT).show();
                             loadSpeciallist(context, loadingDialog, true);
@@ -562,7 +560,7 @@ public class DBqueries {
 
                         }
                         speciallistAdapter.notifyDataSetChanged();
-                       // MySpeciallistFragment.speciallistAdapter.notifyDataSetChanged();
+                        // MySpeciallistFragment.speciallistAdapter.notifyDataSetChanged();
                     }
 
                     ProductDetailsActivity.ALREADY_ADDED_TO_SPECIALLIST = false;
@@ -591,10 +589,6 @@ public class DBqueries {
     }
 
     //// SPECIAL
-
-
-
-
 
 
     public static void loadRewards(final Context context, final Dialog loadingDialog, final Boolean onRewardFragment) {
@@ -673,6 +667,7 @@ public class DBqueries {
         addressesModelList.clear();
         rewardModelList.clear();
     }
+
 
 
 

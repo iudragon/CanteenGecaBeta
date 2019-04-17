@@ -15,6 +15,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,6 +53,8 @@ public class ProductDetailsActivity extends AppCompatActivity {
     private TextView averageRatingMiniView;
     private TextView totalRatingMiniView;
     private TextView productPrice;
+
+    public static boolean should_allow_back_key = false;
 
 //    private ImageView codIndicator;
 //    private TextView tvCodIndicator;
@@ -178,7 +182,6 @@ public class ProductDetailsActivity extends AppCompatActivity {
         loadingDialog.show();
 
         productDetailsTabsContainer.setVisibility(View.VISIBLE);
-
 
 
         firebaseFirestore = FirebaseFirestore.getInstance();
@@ -352,7 +355,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
                                         if (DBqueries.wishlistModelList.size() != 0) {
 
-                                            DBqueries.wishlistModelList.add(new WishlistModel(productID, documentSnapshot.get("product_image_1").toString(), documentSnapshot.get("product_title").toString(),  documentSnapshot.get("product_price").toString()));
+                                            DBqueries.wishlistModelList.add(new WishlistModel(productID, documentSnapshot.get("product_image_1").toString(), documentSnapshot.get("product_title").toString(), documentSnapshot.get("product_price").toString()));
 
                                         }
 
@@ -515,32 +518,46 @@ public class ProductDetailsActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
+
+
         productDetailsTabsContainer.setVisibility(View.GONE);
 
 
         if (DBqueries.wishlistModelList.size() == 0) {
+
+            should_allow_back_key = false;
 
             DBqueries.wishlist.clear();
 
             DBqueries.loadWishlist(ProductDetailsActivity.this, loadingDialog, true);
 
         } else {
+            should_allow_back_key = false;
+
             DBqueries.loadWishlist(ProductDetailsActivity.this, loadingDialog, true);
 
         }
 
         if (DBqueries.speciallistModelList.size() == 0) {
 
+            should_allow_back_key = false;
+
+
             DBqueries.speciallist.clear();
 
             DBqueries.loadSpeciallist(ProductDetailsActivity.this, loadingDialog, true);
 
 
-
         } else {
+
+            should_allow_back_key = false;
+
+
             DBqueries.loadSpeciallist(ProductDetailsActivity.this, loadingDialog, true);
 
         }
+
+        should_allow_back_key = true;
 
 
         currentUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -626,11 +643,22 @@ public class ProductDetailsActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+
     @Override
     public void onBackPressed() {
 
-        productDetailsActivity = null;
+        if (should_allow_back_key){
+            productDetailsActivity = null;
+            super.onBackPressed();
+        } else{
 
-        super.onBackPressed();
+            Toast.makeText(productDetailsActivity, "After loading you can press BACK key", Toast.LENGTH_SHORT).show();
+
+        }
+
+
+
     }
+
+
 }

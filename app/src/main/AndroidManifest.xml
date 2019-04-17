@@ -23,17 +23,8 @@
         <activity android:name="dragon.bakuman.iu.canteen.ViewAllActivity"
             android:screenOrientation="portrait"
             />
-        <activity android:name="dragon.bakuman.iu.canteen.MyAddressesActivity"
-            android:screenOrientation="portrait"
-            />
-        <activity
-            android:name="dragon.bakuman.iu.canteen.AddAddressActivity"
-            android:theme="@style/RedProgressbar"
-            android:screenOrientation="portrait"
-            />
-        <activity android:name="dragon.bakuman.iu.canteen.DeliveryActivity"
-            android:screenOrientation="portrait"
-            />
+
+
         <activity android:name="dragon.bakuman.iu.canteen.OrderDetailsActivity"
             android:screenOrientation="portrait"
             />
