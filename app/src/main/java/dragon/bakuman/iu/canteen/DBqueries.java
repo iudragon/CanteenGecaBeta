@@ -33,7 +33,6 @@ import static dragon.bakuman.iu.canteen.MyWishlistFragment.wishlistAdapter;
 public class DBqueries {
 
 
-
     public static MyWishlistFragment wishFragment;
     public static FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
 
@@ -58,7 +57,7 @@ public class DBqueries {
 
     public static List<AddressesModel> addressesModelList = new ArrayList<>();
 
-    public static List<com.lewokapps.gecacanteen.RewardModel> rewardModelList = new ArrayList<>();
+    public static List<dragon.bakuman.iu.canteen.RewardModel> rewardModelList = new ArrayList<>();
 
     public static void loadCategories(final RecyclerView categoryRecyclerView, final Context context) {
 
@@ -610,19 +609,23 @@ public class DBqueries {
                                 for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
 
                                     if (documentSnapshot.get("type").toString().equals("Discount") && lastseenDate.before(documentSnapshot.getDate("validity"))) {
-                                        rewardModelList.add(new com.lewokapps.gecacanteen.RewardModel(documentSnapshot.getId(), documentSnapshot.get("type").toString(),
+                                        rewardModelList.add(new dragon.bakuman.iu.canteen.RewardModel(documentSnapshot.getId(), documentSnapshot.get("type").toString(),
                                                 documentSnapshot.get("lower_limit").toString(),
                                                 documentSnapshot.get("upper_limit").toString(),
                                                 documentSnapshot.get("percentage").toString(),
                                                 documentSnapshot.get("body").toString(),
+                                                documentSnapshot.get("coupon_title_reward").toString(),
                                                 (Date) documentSnapshot.getTimestamp("validity").toDate(),
                                                 (boolean) documentSnapshot.get("already_used")));
                                     } else if (documentSnapshot.get("type").toString().equals("FlatRsOff") && lastseenDate.before(documentSnapshot.getDate("validity"))) {
-                                        rewardModelList.add(new com.lewokapps.gecacanteen.RewardModel(documentSnapshot.getId(), documentSnapshot.get("type").toString(),
+
+
+                                        rewardModelList.add(new dragon.bakuman.iu.canteen.RewardModel(documentSnapshot.getId(), documentSnapshot.get("type").toString(),
                                                 documentSnapshot.get("lower_limit").toString(),
                                                 documentSnapshot.get("upper_limit").toString(),
                                                 documentSnapshot.get("amount").toString(),
                                                 documentSnapshot.get("body").toString(),
+                                                documentSnapshot.get("coupon_title_reward").toString(),
                                                 (Date) documentSnapshot.getTimestamp("validity").toDate(),
                                                 (boolean) documentSnapshot.get("already_used")));
                                     }
@@ -667,8 +670,6 @@ public class DBqueries {
         addressesModelList.clear();
         rewardModelList.clear();
     }
-
-
 
 
 }

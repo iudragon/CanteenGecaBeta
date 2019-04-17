@@ -14,11 +14,11 @@ import java.util.List;
 
 public class MyRewardsAdapter extends RecyclerView.Adapter<MyRewardsAdapter.ViewHolder> {
 
-    private List<com.lewokapps.gecacanteen.RewardModel> rewardModelList;
+    private List<dragon.bakuman.iu.canteen.RewardModel> rewardModelList;
 
     private Boolean useMiniLayout = false;
 
-    public MyRewardsAdapter(List<com.lewokapps.gecacanteen.RewardModel> rewardModelList, Boolean useMiniLayout) {
+    public MyRewardsAdapter(List<dragon.bakuman.iu.canteen.RewardModel> rewardModelList, Boolean useMiniLayout) {
         this.rewardModelList = rewardModelList;
         this.useMiniLayout = useMiniLayout;
     }
@@ -45,11 +45,12 @@ public class MyRewardsAdapter extends RecyclerView.Adapter<MyRewardsAdapter.View
         String type = rewardModelList.get(position).getType();
         Date validity = rewardModelList.get(position).getTimestamp();
         String body = rewardModelList.get(position).getCouponBody();
+        String couponTitleReward = rewardModelList.get(position).getCouponTitleReward();
         String lowerLimit = rewardModelList.get(position).getLowerLimit();
         String upperLimit = rewardModelList.get(position).getUpperLimit();
         String discORamt = rewardModelList.get(position).getDiscORamt();
 
-        viewHolder.setData(type, validity, body, upperLimit, lowerLimit, discORamt);
+        viewHolder.setData(type, validity, body, upperLimit, lowerLimit, discORamt, couponTitleReward);
     }
 
     @Override
@@ -72,13 +73,13 @@ public class MyRewardsAdapter extends RecyclerView.Adapter<MyRewardsAdapter.View
 
         }
 
-        private void setData(final String type, final Date validity, final String body, String upperLimit, String lowerLimit, String discORamt) {
+        private void setData(final String type, final Date validity, final String body, String upperLimit, String lowerLimit, String discORamt, final String couponTitleReward) {
 
             if (type.equals("Discount")) {
 
-                couponTitle.setText(type);
+                couponTitle.setText(couponTitleReward);
             } else {
-                couponTitle.setText("FLAT Rs." + discORamt + " OFF");
+                couponTitle.setText(couponTitleReward);
             }
 
             final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MMM/YYYY");
