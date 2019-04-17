@@ -7,7 +7,7 @@
     android:layout_marginTop="8dp"
     android:layout_marginEnd="16dp"
     android:layout_marginBottom="8dp"
-    android:background="@drawable/border_background">
+    android:background="@drawable/border_background_rewards">
 
     <ImageView
         android:id="@+id/coupon_icon"
@@ -15,7 +15,7 @@
         android:layout_height="25dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:tint="#ffffff"
+        android:tint="@color/colorAccent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_card_giftcard" />
@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:text="Discount coupon"
-        android:textColor="#ffffff"
+        android:textColor="@color/colorAccent"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/coupon_icon"
@@ -38,10 +38,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:background="#ffffff"
+        android:background="@color/colorAccent"
         android:padding="3dp"
         android:text="till 13th, August 2019"
-        android:textColor="#2950DF"
+        android:textColor="#ffffff"
         android:textSize="12sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -56,7 +56,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:text="Get 20% off when you do something great. Lol no."
-        android:textColor="#FFFFFF"
+        android:textColor="@color/colorRewardBody"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

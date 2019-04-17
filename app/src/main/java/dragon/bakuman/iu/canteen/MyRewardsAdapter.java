@@ -14,11 +14,11 @@ import java.util.List;
 
 public class MyRewardsAdapter extends RecyclerView.Adapter<MyRewardsAdapter.ViewHolder> {
 
-    private List<RewardModel> rewardModelList;
+    private List<com.lewokapps.gecacanteen.RewardModel> rewardModelList;
 
     private Boolean useMiniLayout = false;
 
-    public MyRewardsAdapter(List<RewardModel> rewardModelList, Boolean useMiniLayout) {
+    public MyRewardsAdapter(List<com.lewokapps.gecacanteen.RewardModel> rewardModelList, Boolean useMiniLayout) {
         this.rewardModelList = rewardModelList;
         this.useMiniLayout = useMiniLayout;
     }

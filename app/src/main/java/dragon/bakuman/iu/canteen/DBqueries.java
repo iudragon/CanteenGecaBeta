@@ -28,6 +28,7 @@ import java.util.Map;
 import static dragon.bakuman.iu.canteen.MySpeciallistFragment.speciallistAdapter;
 import static dragon.bakuman.iu.canteen.MyWishlistFragment.wishlistAdapter;
 
+
 public class DBqueries {
 
     public static MyWishlistFragment wishFragment;
@@ -57,7 +58,7 @@ public class DBqueries {
 
     public static List<AddressesModel> addressesModelList = new ArrayList<>();
 
-    public static List<RewardModel> rewardModelList = new ArrayList<>();
+    public static List<com.lewokapps.gecacanteen.RewardModel> rewardModelList = new ArrayList<>();
 
     public static void loadCategories(final RecyclerView categoryRecyclerView, final Context context) {
 
@@ -508,7 +509,7 @@ public class DBqueries {
 
                     if (ProductDetailsActivity.addToWishlistBtn != null) {
 
-                        ProductDetailsActivity.addToWishlistBtn.setSupportImageTintList(ColorStateList.valueOf(context.getResources().getColor(R.color.btnRed)));
+                        ProductDetailsActivity.addToWishlistBtn.setSupportImageTintList(ColorStateList.valueOf(context.getResources().getColor(R.color.colorAvailable)));
                     }
 
                     wishlist.add(index, removeProductId);
@@ -586,7 +587,7 @@ public class DBqueries {
 
                     if (ProductDetailsActivity.addToSpeciallistBtn != null) {
 
-                        ProductDetailsActivity.addToSpeciallistBtn.setSupportImageTintList(ColorStateList.valueOf(context.getResources().getColor(R.color.btnRed)));
+                        ProductDetailsActivity.addToSpeciallistBtn.setSupportImageTintList(ColorStateList.valueOf(context.getResources().getColor(R.color.colorAvailable)));
                     }
 
                     speciallist.add(index, removeProductId);
@@ -651,43 +652,67 @@ public class DBqueries {
         });
     }
 
-    public static void loadRewards(final Context context, final Dialog loadingDialog) {
+
+    public static void loadRewards(final Context context, final Dialog loadingDialog, final Boolean onRewardFragment) {
 
         rewardModelList.clear();
-        firebaseFirestore.collection("USERS").document(FirebaseAuth.getInstance().getUid()).collection("USER_REWARDS").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+
+
+        firebaseFirestore.collection("USERS").document("HyJKnZQSsBRvlJPvEgzKGQSY9Oy1").get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {
+                    final Date lastseenDate = task.getResult().getDate("Last seen");
 
-                    for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
+                    firebaseFirestore.collection("USERS").document("HyJKnZQSsBRvlJPvEgzKGQSY9Oy1").collection("USER_REWARDS").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if (task.isSuccessful()) {
 
-                        if (documentSnapshot.get("type").toString().equals("Discount")) {
-                            rewardModelList.add(new RewardModel(documentSnapshot.get("type").toString(),
-                                    documentSnapshot.get("lower_limit").toString(),
-                                    documentSnapshot.get("upper_limit").toString(),
-                                    documentSnapshot.get("percentage").toString(),
-                                    documentSnapshot.get("body").toString(),
-                                    (Date) documentSnapshot.getTimestamp("validity").toDate()));
-                        } else {
-                            rewardModelList.add(new RewardModel(documentSnapshot.get("type").toString(),
-                                    documentSnapshot.get("lower_limit").toString(),
-                                    documentSnapshot.get("upper_limit").toString(),
-                                    documentSnapshot.get("amount").toString(),
-                                    documentSnapshot.get("body").toString(),
-                                    (Date) documentSnapshot.getTimestamp("validity").toDate()));
+                                for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
+
+                                    if (documentSnapshot.get("type").toString().equals("Discount") && lastseenDate.before(documentSnapshot.getDate("validity"))) {
+                                        rewardModelList.add(new com.lewokapps.gecacanteen.RewardModel(documentSnapshot.getId(), documentSnapshot.get("type").toString(),
+                                                documentSnapshot.get("lower_limit").toString(),
+                                                documentSnapshot.get("upper_limit").toString(),
+                                                documentSnapshot.get("percentage").toString(),
+                                                documentSnapshot.get("body").toString(),
+                                                (Date) documentSnapshot.getTimestamp("validity").toDate(),
+                                                (boolean) documentSnapshot.get("already_used")));
+                                    } else if (documentSnapshot.get("type").toString().equals("FlatRsOff") && lastseenDate.before(documentSnapshot.getDate("validity"))) {
+                                        rewardModelList.add(new com.lewokapps.gecacanteen.RewardModel(documentSnapshot.getId(), documentSnapshot.get("type").toString(),
+                                                documentSnapshot.get("lower_limit").toString(),
+                                                documentSnapshot.get("upper_limit").toString(),
+                                                documentSnapshot.get("amount").toString(),
+                                                documentSnapshot.get("body").toString(),
+                                                (Date) documentSnapshot.getTimestamp("validity").toDate(),
+                                                (boolean) documentSnapshot.get("already_used")));
+                                    }
+                                }
+
+                                if (onRewardFragment) {
+
+                                    MyRewardsFragment.myRewardsAdapter.notifyDataSetChanged();
+                                }
+                            } else {
+                                String error = task.getException().getMessage();
+                                Toast.makeText(context, error, Toast.LENGTH_SHORT).show();
+                            }
+
+                            loadingDialog.dismiss();
                         }
-                    }
+                    });
 
-                    MyRewardsFragment.myRewardsAdapter.notifyDataSetChanged();
 
                 } else {
+                    loadingDialog.dismiss();
                     String error = task.getException().getMessage();
                     Toast.makeText(context, error, Toast.LENGTH_SHORT).show();
                 }
-
-                loadingDialog.dismiss();
             }
         });
+
+
     }
 
     public static void clearData() {

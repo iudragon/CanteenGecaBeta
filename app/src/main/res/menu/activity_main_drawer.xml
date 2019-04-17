@@ -9,17 +9,17 @@
             android:icon="@drawable/ic_mall"
             android:title="Explore" />
         <!--<item-->
-            <!--android:id="@+id/nav_my_orders"-->
-            <!--android:icon="@drawable/ic_shopping"-->
-            <!--android:title="My Orders" />-->
+        <!--android:id="@+id/nav_my_orders"-->
+        <!--android:icon="@drawable/ic_shopping"-->
+        <!--android:title="My Orders" />-->
         <!--<item-->
-            <!--android:id="@+id/nav_my_rewards"-->
-            <!--android:icon="@drawable/ic_card_giftcard"-->
-            <!--android:title="My Rewards" />-->
+        <!--android:id="@+id/nav_my_rewards"-->
+        <!--android:icon="@drawable/ic_card_giftcard"-->
+        <!--android:title="My Rewards" />-->
         <!--<item-->
-            <!--android:id="@+id/nav_my_cart"-->
-            <!--android:icon="@drawable/ic_shopping_cart_black"-->
-            <!--android:title="My Cart" />-->
+        <!--android:id="@+id/nav_my_cart"-->
+        <!--android:icon="@drawable/ic_shopping_cart_black"-->
+        <!--android:title="My Cart" />-->
         <item
             android:id="@+id/nav_my_wishlist"
             android:icon="@drawable/ic_local_dining"
@@ -29,9 +29,13 @@
             android:icon="@drawable/ic_star_black"
             android:title="@string/special_of_the_day" />
 
+        <!--<item-->
+            <!--android:id="@+id/nav_my_account"-->
+            <!--android:icon="@drawable/ic_person"-->
+            <!--android:title="About" />-->
         <item
-            android:id="@+id/nav_my_account"
-            android:icon="@drawable/ic_person"
+            android:id="@+id/nav_my_rewards"
+            android:icon="@drawable/ic_info"
             android:title="About" />
     </group>
 

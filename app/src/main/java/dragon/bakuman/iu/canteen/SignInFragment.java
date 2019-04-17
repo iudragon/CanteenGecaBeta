@@ -25,6 +25,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FieldValue;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import static dragon.bakuman.iu.canteen.RegisterActivity.onResetPasswordFragment;
 
@@ -150,6 +152,12 @@ public class SignInFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 checkEmailAndPassword();
+                FirebaseFirestore.getInstance().collection("USERS").document("HyJKnZQSsBRvlJPvEgzKGQSY9Oy1").update("Last seen", FieldValue.serverTimestamp()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+
+                    }
+                });
             }
         });
 

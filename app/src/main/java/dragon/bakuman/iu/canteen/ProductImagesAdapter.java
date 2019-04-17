@@ -26,8 +26,8 @@ public class ProductImagesAdapter extends PagerAdapter {
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
         ImageView productImage = new ImageView(container.getContext());
 
-        Animation animation = AnimationUtils.loadAnimation(container.getContext(), R.anim.fade_in);
-        productImage.setAnimation(animation);
+//        Animation animation = AnimationUtils.loadAnimation(container.getContext(), R.anim.fade_in);
+//        productImage.setAnimation(animation);
 
         Glide.with(container.getContext()).load(productImages.get(position)).apply(new RequestOptions().placeholder(R.drawable.placeholdericon)).into(productImage);
 

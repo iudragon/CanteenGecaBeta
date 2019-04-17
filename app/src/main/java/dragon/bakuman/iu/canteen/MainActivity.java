@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -23,6 +24,7 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -33,6 +35,10 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private FrameLayout frameLayout;
+
+    private ConstraintLayout navHeaderSignIn;
+
+    private ImageView headerProfileImage;
 
     private ImageView actionBarLogo;
 
@@ -94,13 +100,30 @@ public class MainActivity extends AppCompatActivity
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
+        navHeaderSignIn = findViewById(R.id.nav_header_sign_in);
 
         navigationView = (NavigationView) findViewById(R.id.nav_view);
+        View headerview = navigationView.getHeaderView(0);
+        headerProfileImage = headerview.findViewById(R.id.main_profile_image);
+        headerProfileImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (currentUser != null){
+                    Toast.makeText(MainActivity.this, "You are the owner", Toast.LENGTH_SHORT).show();
+                } else {
+                    signInDialog.show();
+                }
+
+            }
+        });
+
+
         navigationView.setNavigationItemSelectedListener(this);
 
         navigationView.getMenu().getItem(0).setChecked(true);
 
         frameLayout = findViewById(R.id.main_framelayout);
+
 
         if (showCart) {
 
@@ -142,19 +165,6 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-//        dialogSignUpBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                SignUpFragment.disableCloseBtn = true;
-//                SignInFragment.disableCloseBtn = true;
-//
-//
-//                signInDialog.dismiss();
-//                setSignUpFragment = true;
-//                startActivity(registerIntent);
-//            }
-//        });
 
 
     }
@@ -168,8 +178,11 @@ public class MainActivity extends AppCompatActivity
         if (currentUser == null) {
 
             navigationView.getMenu().getItem(navigationView.getMenu().size() - 1).setEnabled(false);
+            navigationView.getMenu().getItem(navigationView.getMenu().size() - 1).setVisible(false);
+
         } else {
             navigationView.getMenu().getItem(navigationView.getMenu().size() - 1).setEnabled(true);
+            navigationView.getMenu().getItem(navigationView.getMenu().size() - 1).setVisible(true);
 
         }
         if (resetMainActivity) {
@@ -218,46 +231,6 @@ public class MainActivity extends AppCompatActivity
             getSupportActionBar().setDisplayShowTitleEnabled(false);
             getMenuInflater().inflate(R.menu.main, menu);
 
-//            MenuItem cartItem = menu.findItem(R.id.main_cart_icon);
-
-//            cartItem.setActionView(R.layout.badge_layout);
-//
-//            ImageView badgeIcon = cartItem.getActionView().findViewById(R.id.badge_icon);
-//            badgeIcon.setImageResource(R.drawable.ic_shopping_cart_white);
-//
-//            badgeCount = cartItem.getActionView().findViewById(R.id.badge_count);
-
-            if (currentUser != null) {
-
-//                if (DBqueries.cartList.size() == 0) {
-//                    DBqueries.loadCartList(MainActivity.this, new Dialog(MainActivity.this), false, badgeCount, new TextView(MainActivity.this));
-
-//                } else {
-//
-//                    badgeCount.setVisibility(View.VISIBLE);
-//
-//                    if (DBqueries.cartList.size() < 99) {
-//
-//                        badgeCount.setText(String.valueOf(DBqueries.cartList.size()));
-//                    } else {
-//                        badgeCount.setText("99");
-//
-//                    }
-//                }
-            }
-
-//            cartItem.getActionView().setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    if (currentUser == null) {
-//                        signInDialog.show();
-//
-//                    } else {
-//
-//                        gotoFragment("My Cart", new MyCartFragment(), CART_FRAGMENT);
-//                    }
-//                }
-//            });
 
         }
         return true;
@@ -274,7 +247,7 @@ public class MainActivity extends AppCompatActivity
         //noinspection SimplifiableIfStatement
         if (id == R.id.main_search_icon) {
 
-           gotoFragment(getString(R.string.available_to_eat),new MyWishlistFragment(),WISHLIST_FRAGMENT);
+            gotoFragment(getString(R.string.available_to_eat), new MyWishlistFragment(), WISHLIST_FRAGMENT);
             navigationView.getMenu().getItem(1).setChecked(true);
 
             return true;
@@ -284,30 +257,10 @@ public class MainActivity extends AppCompatActivity
             navigationView.getMenu().getItem(2).setChecked(true);
 
             return true;
-//        } else if (id == R.id.main_cart_icon) {
-//
-//            if (currentUser == null) {
-//                signInDialog.show();
-//
-//            } else {
-//
-//                gotoFragment("My Cart", new MyCartFragment(), CART_FRAGMENT);
-//            }
-//
-//            return true;
-//        } else if (id == android.R.id.home) {
-
-//            if (showCart) {
-//                mainActivity = null;
-//                showCart = false;
-//                finish();
-//                return true;
-//            }
         }
 
         return super.onOptionsItemSelected(item);
     }
-
 
 
     private void gotoFragment(String title, Fragment fragment, int fragmentNo) {
@@ -361,15 +314,15 @@ public class MainActivity extends AppCompatActivity
 
                         setFragment(new HomeFragment(), HOME_FRAGMENT);
 
-                    }  else if (id == R.id.nav_my_wishlist) {
+                    } else if (id == R.id.nav_my_wishlist) {
                         gotoFragment(getString(R.string.available_to_eat), new MyWishlistFragment(), WISHLIST_FRAGMENT);
 
-                    }else if (id == R.id.nav_my_speciallist) {
+                    } else if (id == R.id.nav_my_speciallist) {
                         gotoFragment(getString(R.string.special_of_the_day), new MySpeciallistFragment(), SPECIALLIST_FRAGMENT);
 
-                    }else if (id == R.id.nav_my_account) {
-                        gotoFragment("About", new MyAccountFragment(), ACCOUNT_FRAGMENT);
+                    } else if (id == R.id.nav_my_rewards) {
 
+                        gotoFragment("About", new MyRewardsFragment(), REWARDS_FRAGMENT);
                     } else if (id == R.id.nav_sign_out) {
                         FirebaseAuth.getInstance().signOut();
 
@@ -387,6 +340,7 @@ public class MainActivity extends AppCompatActivity
             return true;
 
         } else {
+
             drawer.addDrawerListener(new DrawerLayout.SimpleDrawerListener() {
                 @Override
                 public void onDrawerClosed(View drawerView) {
@@ -394,6 +348,8 @@ public class MainActivity extends AppCompatActivity
                     super.onDrawerClosed(drawerView);
 
                     int id = menuItem.getItemId();
+
+
                     if (id == R.id.nav_my_mall) {
                         invalidateOptionsMenu();
                         signInDialog.dismiss();
@@ -408,12 +364,13 @@ public class MainActivity extends AppCompatActivity
                         signInDialog.dismiss();
                         gotoFragment(getString(R.string.special_of_the_day), new MySpeciallistFragment(), SPECIALLIST_FRAGMENT);
                         navigationView.getMenu().getItem(2).setChecked(true);
-                    } else if (id == R.id.nav_my_account){
+                    } else if (id == R.id.nav_my_rewards) {
                         signInDialog.dismiss();
-                        gotoFragment("About", new MyAccountFragment(), ACCOUNT_FRAGMENT);
+
+                        gotoFragment("About", new MyRewardsFragment(), REWARDS_FRAGMENT);
                         navigationView.getMenu().getItem(3).setChecked(true);
-                    }
-                    else {
+
+                    } else {
                         signInDialog.dismiss();
                     }
 
@@ -432,8 +389,8 @@ public class MainActivity extends AppCompatActivity
 
         if (fragmentNo != currentFragment) {
             if (fragmentNo == REWARDS_FRAGMENT) {
-                window.setStatusBarColor(getResources().getColor(R.color.btnRed));
-                toolbar.setBackgroundColor(getResources().getColor(R.color.btnRed));
+                window.setStatusBarColor(getResources().getColor(R.color.colorPrimary));
+                toolbar.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
             } else {
 
                 window.setStatusBarColor(getResources().getColor(R.color.colorPrimary));
@@ -450,16 +407,4 @@ public class MainActivity extends AppCompatActivity
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
 

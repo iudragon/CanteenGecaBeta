@@ -161,6 +161,9 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
         productPrice = findViewById(R.id.product_price);
 
+        rewardTitle = findViewById(R.id.reward_title);
+        rewardBody = findViewById(R.id.reward_body);
+
         productDetailsTabsContainer = findViewById(R.id.product_details_tab_container);
 
         productOnlyDescriptionBody = findViewById(R.id.product_details_body);
@@ -173,6 +176,9 @@ public class ProductDetailsActivity extends AppCompatActivity {
         loadingDialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
         loadingDialog.show();
+
+        productDetailsTabsContainer.setVisibility(View.VISIBLE);
+
 
 
         firebaseFirestore = FirebaseFirestore.getInstance();
@@ -208,7 +214,11 @@ public class ProductDetailsActivity extends AppCompatActivity {
 //                                totalRatingMiniView.setText("(" + documentSnapshot.get("total_ratings") + ")ratings");
 
                                 productPrice.setText("Rs. " + documentSnapshot.get("product_price").toString() + "/-");
-
+//
+//                                rewardTitle.setText((long) documentSnapshot.get("free_coupons") + documentSnapshot.get("free_coupon_title").toString());
+//
+//
+//                                rewardBody.setText(documentSnapshot.get("free_coupon_body").toString());
 
                                 if ((boolean) documentSnapshot.get("use_tab_layout")) {
                                     productDetailsTabsContainer.setVisibility(View.VISIBLE);
@@ -311,7 +321,10 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
                 if (currentUser == null) {
 
-                    signInDialog.show();
+                    Toast.makeText(ProductDetailsActivity.this, "Icon: Available to eat", Toast.LENGTH_SHORT).show();
+
+//                    signInDialog.show();
+
                 } else {
 
                     if (!running_wishlist_query) {
@@ -350,7 +363,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
                                         if (!DBqueries.wishlist.contains(productID)) {
                                             DBqueries.wishlist.add(productID);
                                         }
-                                        Toast.makeText(ProductDetailsActivity.this, "Added to wishlist success", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(ProductDetailsActivity.this, "Added to Available to eat", Toast.LENGTH_SHORT).show();
 
                                     } else {
                                         addToWishlistBtn.setSupportImageTintList(getResources().getColorStateList(R.color.colorGreyNoItems));
@@ -376,7 +389,9 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
                 if (currentUser == null) {
 
-                    signInDialog.show();
+                    Toast.makeText(ProductDetailsActivity.this, "Icon: Special of the day", Toast.LENGTH_SHORT).show();
+
+//                    signInDialog.show();
                 } else {
 
                     if (!running_speciallist_query) {
@@ -419,7 +434,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
                                             DBqueries.speciallist.add(productID);
                                         }
-                                        Toast.makeText(ProductDetailsActivity.this, "Added to speciallist success", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(ProductDetailsActivity.this, "Added to Special of the day", Toast.LENGTH_SHORT).show();
 
                                     } else {
                                         addToSpeciallistBtn.setSupportImageTintList(getResources().getColorStateList(R.color.colorGreyNoItems));

@@ -11,4 +11,6 @@
     <color name="colorBlue">#3848EB</color>
     <color name="colorGreyNoItems">#dfe6e9</color>
     <color name="colorSpecial">#fdcb6e</color>
+    <color name="colorListFragmentBackground">#CFF5FF</color>
+    <color name="colorRewardBody">#636e72</color>
 </resources>
