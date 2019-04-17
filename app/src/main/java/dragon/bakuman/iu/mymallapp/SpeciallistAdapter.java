@@ -60,10 +60,9 @@ public class SpeciallistAdapter extends RecyclerView.Adapter<SpeciallistAdapter.
         String rating = speciallistModelList.get(position).getRating();
         long totalRatings = speciallistModelList.get(position).getTotalRatings();
         String productPrice = speciallistModelList.get(position).getProductPrice();
-        String cuttedPrice = speciallistModelList.get(position).getCuttedPrice();
         boolean paymentMethod = speciallistModelList.get(position).isCOD();
 
-        viewHolder.setData(productId, resource, title, freeCoupons, rating, totalRatings, productPrice, cuttedPrice, paymentMethod, position);
+        viewHolder.setData(productId, resource, title, freeCoupons, rating, totalRatings, productPrice, paymentMethod, position);
 
         if (lastPosition < position) {
 
@@ -83,13 +82,12 @@ public class SpeciallistAdapter extends RecyclerView.Adapter<SpeciallistAdapter.
 
         private ImageView productImage;
         private TextView productTitle;
-//        private TextView freeCoupons;
+        //        private TextView freeCoupons;
 //        private ImageView couponIcon;
         private TextView productPrice;
-        private TextView cuttedPrice;
-//        private TextView paymentMethod;
+        //        private TextView paymentMethod;
         private TextView rating;
-//        private TextView totalRatings;
+        //        private TextView totalRatings;
         private View priceCut;
         private ImageButton deleteBtn;
 
@@ -101,36 +99,29 @@ public class SpeciallistAdapter extends RecyclerView.Adapter<SpeciallistAdapter.
 //            couponIcon = itemView.findViewById(R.id.coupon_icon);
 //            rating = itemView.findViewById(R.id.tv_product_rating_miniview);
 //            totalRatings = itemView.findViewById(R.id.total_ratings);
-            priceCut = itemView.findViewById(R.id.price_cut);
             productPrice = itemView.findViewById(R.id.product_price);
-            cuttedPrice = itemView.findViewById(R.id.cutted_price);
 //            paymentMethod = itemView.findViewById(R.id.payment_method);
             deleteBtn = itemView.findViewById(R.id.delete_button);
 
         }
 
-        private void setData(final String productId, String resource, String title, long freeCouponsNo, String averageRate, long totalRatingsNo, String price, String cuttedPricevValue, boolean COD, final int index) {
+        private void setData(final String productId, String resource, String title, long freeCouponsNo, String averageRate, long totalRatingsNo, String price, boolean COD, final int index) {
 
             Glide.with(itemView.getContext()).load(resource).apply(new RequestOptions().placeholder(R.drawable.placeholdericonmini)).into(productImage);
 
             productTitle.setText(title);
 
 
-
-
-                productPrice.setTextColor(itemView.getContext().getResources().getColor(R.color.colorBlack));
-                cuttedPrice.setVisibility(View.VISIBLE);
-                productPrice.setText("Rs. " + price + "/-");
-                cuttedPrice.setText("Rs. " + cuttedPricevValue + "/-");
+            productPrice.setTextColor(itemView.getContext().getResources().getColor(R.color.colorBlack));
+            productPrice.setText("Rs. " + price + "/-");
 
             if (speciallist) {
-                if (currentUser == null){
+                if (currentUser == null) {
                     deleteBtn.setVisibility(View.GONE);
-                } else if (currentUser != null){
+                } else if (currentUser != null) {
                     deleteBtn.setVisibility(View.VISIBLE);
 
                 }
-
 
 
             } else {
@@ -139,21 +130,21 @@ public class SpeciallistAdapter extends RecyclerView.Adapter<SpeciallistAdapter.
             }
 
             deleteBtn.setOnClickListener(new View.OnClickListener() {
-                String  productId;
+                String productId;
+
                 @Override
                 public void onClick(View v) {
 
                     if (!ProductDetailsActivity.running_speciallist_query) {
 
-                        if(DBqueries.speciallistModelList.size()>0) {
-                            productId= DBqueries.speciallistModelList.get(index).getProductId();
+                        if (DBqueries.speciallistModelList.size() > 0) {
+                            productId = DBqueries.speciallistModelList.get(index).getProductId();
                             // productId = wishlistModelList.get(index).getProductId();
-                            Log.d("remove index:",productId+" "+index);
+                            Log.d("remove index:", productId + " " + index);
 
                             DBqueries.removeFromSpeciallist(productId, itemView.getContext(), true);
-                        }
-                        else
-                            Log.d("list error=",""+speciallistModelList.size());
+                        } else
+                            Log.d("list error=", "" + speciallistModelList.size());
 
 
                     }

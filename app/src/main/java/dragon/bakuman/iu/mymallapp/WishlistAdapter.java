@@ -22,6 +22,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import java.util.List;
+
 public class WishlistAdapter extends RecyclerView.Adapter<WishlistAdapter.ViewHolder> {
 
     private List<WishlistModel> wishlistModelList;
@@ -60,10 +61,9 @@ public class WishlistAdapter extends RecyclerView.Adapter<WishlistAdapter.ViewHo
         String rating = wishlistModelList.get(position).getRating();
         long totalRatings = wishlistModelList.get(position).getTotalRatings();
         String productPrice = wishlistModelList.get(position).getProductPrice();
-        String cuttedPrice = wishlistModelList.get(position).getCuttedPrice();
         boolean paymentMethod = wishlistModelList.get(position).isCOD();
 
-        viewHolder.setData(productId, resource, title, freeCoupons, rating, totalRatings, productPrice, cuttedPrice, paymentMethod, position);
+        viewHolder.setData(productId, resource, title, freeCoupons, rating, totalRatings, productPrice, paymentMethod, position);
 
         if (lastPosition < position) {
 
@@ -86,7 +86,6 @@ public class WishlistAdapter extends RecyclerView.Adapter<WishlistAdapter.ViewHo
         //        private TextView freeCoupons;
 //        private ImageView couponIcon;
         private TextView productPrice;
-        private TextView cuttedPrice;
         //        private TextView paymentMethod;
 //        private TextView rating;
 //        private TextView totalRatings;
@@ -101,15 +100,13 @@ public class WishlistAdapter extends RecyclerView.Adapter<WishlistAdapter.ViewHo
 //            couponIcon = itemView.findViewById(R.id.coupon_icon);
 //            rating = itemView.findViewById(R.id.tv_product_rating_miniview);
 //            totalRatings = itemView.findViewById(R.id.total_ratings);
-            priceCut = itemView.findViewById(R.id.price_cut);
             productPrice = itemView.findViewById(R.id.product_price);
-            cuttedPrice = itemView.findViewById(R.id.cutted_price);
 //            paymentMethod = itemView.findViewById(R.id.payment_method);
             deleteBtn = itemView.findViewById(R.id.delete_button);
 
         }
 
-        private void setData(final String productId, String resource, String title, long freeCouponsNo, String averageRate, long totalRatingsNo, String price, String cuttedPricevValue, boolean COD, final int index) {
+        private void setData(final String productId, String resource, String title, long freeCouponsNo, String averageRate, long totalRatingsNo, String price, boolean COD, final int index) {
 
             Glide.with(itemView.getContext()).load(resource).apply(new RequestOptions().placeholder(R.drawable.placeholdericonmini)).into(productImage);
 
@@ -117,19 +114,16 @@ public class WishlistAdapter extends RecyclerView.Adapter<WishlistAdapter.ViewHo
 
 
             productPrice.setTextColor(itemView.getContext().getResources().getColor(R.color.colorBlack));
-            cuttedPrice.setVisibility(View.VISIBLE);
             productPrice.setText("Rs. " + price + "/-");
-            cuttedPrice.setText("Rs. " + cuttedPricevValue + "/-");
 
 
             if (wishlist) {
-                if (currentUser == null){
+                if (currentUser == null) {
                     deleteBtn.setVisibility(View.GONE);
-                } else if (currentUser != null){
+                } else if (currentUser != null) {
                     deleteBtn.setVisibility(View.VISIBLE);
 
                 }
-
 
 
             } else {
@@ -138,7 +132,7 @@ public class WishlistAdapter extends RecyclerView.Adapter<WishlistAdapter.ViewHo
             }
 
             deleteBtn.setOnClickListener(new View.OnClickListener() {
-                String  productId;
+                String productId;
 
                 @Override
                 public void onClick(View v) {
@@ -146,15 +140,14 @@ public class WishlistAdapter extends RecyclerView.Adapter<WishlistAdapter.ViewHo
                     if (!ProductDetailsActivity.running_wishlist_query) {
 
                         ProductDetailsActivity.running_wishlist_query = true;
-                        if(DBqueries.wishlistModelList.size()>0) {
-                            productId= DBqueries.wishlistModelList.get(index).getProductId();
+                        if (DBqueries.wishlistModelList.size() > 0) {
+                            productId = DBqueries.wishlistModelList.get(index).getProductId();
                             // productId = wishlistModelList.get(index).getProductId();
-                            Log.d("remove index:",productId+" "+index);
+                            Log.d("remove index:", productId + " " + index);
 
                             DBqueries.removeFromWishlist(productId, itemView.getContext(), true);
-                        }
-                        else
-                            Log.d("list error=",""+wishlistModelList.size());
+                        } else
+                            Log.d("list error=", "" + wishlistModelList.size());
 
                     }
                 }

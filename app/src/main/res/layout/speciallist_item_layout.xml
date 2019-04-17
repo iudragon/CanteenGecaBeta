@@ -48,15 +48,6 @@
         app:layout_constraintTop_toBottomOf="@+id/product_title"
         app:layout_constraintVertical_bias="0.8" />
 
-    <TextView
-        android:id="@+id/cutted_price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="Rs. 59999/-"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@+id/product_price"
-        app:layout_constraintStart_toEndOf="@+id/product_price" />
 
     <ImageButton
         android:id="@+id/delete_button"
@@ -73,15 +64,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_block" />
 
-    <View
-        android:id="@+id/price_cut"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:background="#5C5858"
-        app:layout_constraintBottom_toBottomOf="@+id/cutted_price"
-        app:layout_constraintEnd_toEndOf="@+id/cutted_price"
-        app:layout_constraintStart_toStartOf="@+id/cutted_price"
-        app:layout_constraintTop_toTopOf="@+id/cutted_price" />
+
 
 
 </android.support.constraint.ConstraintLayout>

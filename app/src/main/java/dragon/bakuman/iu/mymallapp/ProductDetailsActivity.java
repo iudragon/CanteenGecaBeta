@@ -51,7 +51,6 @@ public class ProductDetailsActivity extends AppCompatActivity {
     private TextView averageRatingMiniView;
     private TextView totalRatingMiniView;
     private TextView productPrice;
-    private TextView cuttedPrice;
 
 //    private ImageView codIndicator;
 //    private TextView tvCodIndicator;
@@ -169,7 +168,6 @@ public class ProductDetailsActivity extends AppCompatActivity {
 //        totalRatingMiniView = findViewById(R.id.total_ratings_miniview);
 
         productPrice = findViewById(R.id.product_price);
-        cuttedPrice = findViewById(R.id.cutted_price);
 
         productDetailsTabsContainer = findViewById(R.id.product_details_tab_container);
         productDetailsOnlyContainer = findViewById(R.id.product_details_container);
@@ -220,7 +218,6 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
                                 productPrice.setText("Rs. " + documentSnapshot.get("product_price").toString() + "/-");
 
-                                cuttedPrice.setText("Rs. " + documentSnapshot.get("cutted_price").toString() + "/-");
 
 
                                 if ((boolean) documentSnapshot.get("COD")) {
@@ -401,7 +398,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
                                         if (DBqueries.wishlistModelList.size() != 0) {
 
-                                            DBqueries.wishlistModelList.add(new WishlistModel(productID, documentSnapshot.get("product_image_1").toString(), documentSnapshot.get("product_title").toString(), (long) documentSnapshot.get("free_coupons"), documentSnapshot.get("average_rating").toString(), (long) documentSnapshot.get("total_ratings"), documentSnapshot.get("product_price").toString(), documentSnapshot.get("cutted_price").toString(), (boolean) documentSnapshot.get("COD")));
+                                            DBqueries.wishlistModelList.add(new WishlistModel(productID, documentSnapshot.get("product_image_1").toString(), documentSnapshot.get("product_title").toString(), (long) documentSnapshot.get("free_coupons"), documentSnapshot.get("average_rating").toString(), (long) documentSnapshot.get("total_ratings"), documentSnapshot.get("product_price").toString(),  (boolean) documentSnapshot.get("COD")));
 
                                         }
 
@@ -469,7 +466,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
                                         if (DBqueries.speciallistModelList.size() != 0) {
 
-                                            DBqueries.speciallistModelList.add(new SpeciallistModel(productID, documentSnapshot.get("product_image_1").toString(), documentSnapshot.get("product_title").toString(), (long) documentSnapshot.get("free_coupons"), documentSnapshot.get("average_rating").toString(), (long) documentSnapshot.get("total_ratings"), documentSnapshot.get("product_price").toString(), documentSnapshot.get("cutted_price").toString(), (boolean) documentSnapshot.get("COD")));
+                                            DBqueries.speciallistModelList.add(new SpeciallistModel(productID, documentSnapshot.get("product_image_1").toString(), documentSnapshot.get("product_title").toString(), (long) documentSnapshot.get("free_coupons"), documentSnapshot.get("average_rating").toString(), (long) documentSnapshot.get("total_ratings"), documentSnapshot.get("product_price").toString(), (boolean) documentSnapshot.get("COD")));
 
                                         }
 
