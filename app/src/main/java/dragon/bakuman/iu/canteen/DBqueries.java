@@ -1,5 +1,6 @@
 package dragon.bakuman.iu.canteen;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -31,7 +32,6 @@ import static dragon.bakuman.iu.canteen.MyWishlistFragment.wishlistAdapter;
 
 
 public class DBqueries {
-
 
 
     public static MyWishlistFragment wishFragment;
@@ -170,7 +170,6 @@ public class DBqueries {
 
     public static void loadWishlist(final Context context, final Dialog dialog, final boolean loadProductData) {
 
-        ProductDetailsActivity.should_allow_back_key = false;
 
         wishlist.clear();
         final Dialog loadingDialog;
@@ -179,7 +178,9 @@ public class DBqueries {
 
         loadingDialog.setCancelable(false);
         loadingDialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        loadingDialog.show();
+        if (!((Activity) context).isFinishing()) {
+            loadingDialog.show();
+        }
 
 
         firebaseFirestore.collection("USERS").document("HyJKnZQSsBRvlJPvEgzKGQSY9Oy1").collection("USER_DATA").document("MY_WISHLIST").get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -235,7 +236,9 @@ public class DBqueries {
                             loadingDialog.setCancelable(false);
 
                             loadingDialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                            loadingDialog.show();
+                            if (!((Activity) context).isFinishing()) {
+                                loadingDialog.show();
+                            }
                             wishlistModelList.clear();
 
                             final String productId = task.getResult().get("product_ID_" + x).toString();
@@ -300,8 +303,6 @@ public class DBqueries {
 
     public static void loadSpeciallist(final Context context, final Dialog dialog, final boolean loadProductData) {
 
-        ProductDetailsActivity.should_allow_back_key = false;
-
 
         speciallist.clear();
         final Dialog loadingDialog;
@@ -310,7 +311,12 @@ public class DBqueries {
 
         loadingDialog.setCancelable(false);
         loadingDialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        loadingDialog.show();
+
+        if (!((Activity) context).isFinishing()) {
+            loadingDialog.show();
+        }
+
+
         firebaseFirestore.collection("USERS").document("HyJKnZQSsBRvlJPvEgzKGQSY9Oy1").collection("USER_DATA").document("MY_SPECIALLIST").get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -362,7 +368,9 @@ public class DBqueries {
                             loadingDialog.setCancelable(false);
 
                             loadingDialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                            loadingDialog.show();
+                            if (!((Activity) context).isFinishing()) {
+                                loadingDialog.show();
+                            }
 
                             speciallistModelList.clear();
 

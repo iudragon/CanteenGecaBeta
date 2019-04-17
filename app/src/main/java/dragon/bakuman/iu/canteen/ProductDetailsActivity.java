@@ -54,7 +54,6 @@ public class ProductDetailsActivity extends AppCompatActivity {
     private TextView totalRatingMiniView;
     private TextView productPrice;
 
-    public static boolean should_allow_back_key = false;
 
 //    private ImageView codIndicator;
 //    private TextView tvCodIndicator;
@@ -159,7 +158,6 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
         productDetailsViewPager = findViewById(R.id.product_details_viewpager);
         productDetailsTabLayout = findViewById(R.id.product_details_tablayout);
-        productImagesConstraintLayoutContainer = findViewById(R.id.product_images_constraint_layout_container);
 
         productTitle = findViewById(R.id.product_title);
 
@@ -525,14 +523,14 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
         if (DBqueries.wishlistModelList.size() == 0) {
 
-            should_allow_back_key = false;
+
 
             DBqueries.wishlist.clear();
 
             DBqueries.loadWishlist(ProductDetailsActivity.this, loadingDialog, true);
 
         } else {
-            should_allow_back_key = false;
+
 
             DBqueries.loadWishlist(ProductDetailsActivity.this, loadingDialog, true);
 
@@ -540,7 +538,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
         if (DBqueries.speciallistModelList.size() == 0) {
 
-            should_allow_back_key = false;
+
 
 
             DBqueries.speciallist.clear();
@@ -550,14 +548,13 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
         } else {
 
-            should_allow_back_key = false;
+
 
 
             DBqueries.loadSpeciallist(ProductDetailsActivity.this, loadingDialog, true);
 
         }
 
-        should_allow_back_key = true;
 
 
         currentUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -647,12 +644,8 @@ public class ProductDetailsActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 
-        if (should_allow_back_key){
             productDetailsActivity = null;
             super.onBackPressed();
-        } else{
-
-            Toast.makeText(productDetailsActivity, "After loading you can press BACK key", Toast.LENGTH_SHORT).show();
 
         }
 
@@ -661,4 +654,4 @@ public class ProductDetailsActivity extends AppCompatActivity {
     }
 
 
-}
+
