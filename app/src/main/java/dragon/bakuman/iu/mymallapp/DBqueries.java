@@ -207,7 +207,7 @@ public class DBqueries {
 
                             if (ProductDetailsActivity.addToWishlistBtn != null) {
 
-                                ProductDetailsActivity.addToWishlistBtn.setSupportImageTintList(context.getResources().getColorStateList(R.color.colorAccent));
+                                ProductDetailsActivity.addToWishlistBtn.setSupportImageTintList(context.getResources().getColorStateList(R.color.colorAvailable));
 
                             }
 
@@ -217,7 +217,7 @@ public class DBqueries {
                             if (ProductDetailsActivity.addToWishlistBtn != null) {
 
 
-                                ProductDetailsActivity.addToWishlistBtn.setSupportImageTintList(ColorStateList.valueOf(context.getResources().getColor(R.color.colorPrimary)));
+                                ProductDetailsActivity.addToWishlistBtn.setSupportImageTintList(ColorStateList.valueOf(context.getResources().getColor(R.color.colorGreyNoItems)));
 
                             }
 
@@ -342,7 +342,7 @@ public class DBqueries {
 
                             if (ProductDetailsActivity.addToSpeciallistBtn != null) {
 
-                                ProductDetailsActivity.addToSpeciallistBtn.setSupportImageTintList(context.getResources().getColorStateList(R.color.colorAccent));
+                                ProductDetailsActivity.addToSpeciallistBtn.setSupportImageTintList(context.getResources().getColorStateList(R.color.colorSpecial));
 
                             }
 
@@ -352,7 +352,7 @@ public class DBqueries {
                             if (ProductDetailsActivity.addToSpeciallistBtn != null) {
 
 
-                                ProductDetailsActivity.addToSpeciallistBtn.setSupportImageTintList(ColorStateList.valueOf(context.getResources().getColor(R.color.colorPrimary)));
+                                ProductDetailsActivity.addToSpeciallistBtn.setSupportImageTintList(ColorStateList.valueOf(context.getResources().getColor(R.color.colorGreyNoItems)));
 
                             }
 
