@@ -135,12 +135,10 @@ public class SpeciallistAdapter extends RecyclerView.Adapter<SpeciallistAdapter.
                         if (DBqueries.speciallistModelList.size() > 0) {
                             productId = DBqueries.speciallistModelList.get(index).getProductId();
                             // productId = wishlistModelList.get(index).getProductId();
-                            Log.d("remove index:", productId + " " + index);
 
                             DBqueries.removeFromSpeciallist(productId, itemView.getContext(), true);
-                        } else
-                            Log.d("list error=", "" + speciallistModelList.size());
-
+                        } else {
+                        }
 
                     }
                 }

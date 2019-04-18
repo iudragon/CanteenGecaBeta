@@ -36,7 +36,6 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
 
-
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
 
@@ -50,11 +49,8 @@ public class RegisterActivity extends AppCompatActivity {
             if (onResetPasswordFragment) {
 
 
-                Log.d(TAG, "onKeyDown: HAHA " + onResetPasswordFragment);
-
                 onResetPasswordFragment = false;
 
-                Log.d(TAG, "onKeyDown: HAHA AFTER " + onResetPasswordFragment);
 
                 setFragment(new SignInFragment());
 

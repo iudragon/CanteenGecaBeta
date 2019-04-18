@@ -19,9 +19,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="dragon.bakuman.iu.canteen.OTPverificationActivity"
-            android:screenOrientation="portrait"></activity>
-        <activity
             android:name="dragon.bakuman.iu.canteen.ViewAllActivity"
             android:screenOrientation="portrait" />
 

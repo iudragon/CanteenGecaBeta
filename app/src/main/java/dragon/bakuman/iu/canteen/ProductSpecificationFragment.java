@@ -39,48 +39,7 @@ public class ProductSpecificationFragment extends Fragment {
 
         productSpecificationRecyclerView.setLayoutManager(linearLayoutManager);
 
-       /* productSpecificationModelList.add(new ProductSpecificationModel(0, "General"));
-        productSpecificationModelList.add(new ProductSpecificationModel(1,"RAM", "8GB"));
-        productSpecificationModelList.add(new ProductSpecificationModel(1,"RAM", "8GB"));
-        productSpecificationModelList.add(new ProductSpecificationModel(1,"RAM", "8GB"));
-        productSpecificationModelList.add(new ProductSpecificationModel(1,"RAM", "8GB"));
-        productSpecificationModelList.add(new ProductSpecificationModel(1,"RAM", "8GB"));
-        productSpecificationModelList.add(new ProductSpecificationModel(1,"RAM", "8GB"));
-        productSpecificationModelList.add(new ProductSpecificationModel(1,"RAM", "8GB"));
-        productSpecificationModelList.add(new ProductSpecificationModel(1,"RAM", "8GB"));
-        productSpecificationModelList.add(new ProductSpecificationModel(0, "Display"));
-        productSpecificationModelList.add(new ProductSpecificationModel(1,"RAM", "8GB"));
-        productSpecificationModelList.add(new ProductSpecificationModel(1,"RAM", "8GB"));
-        productSpecificationModelList.add(new ProductSpecificationModel(1,"RAM", "8GB"));
-        productSpecificationModelList.add(new ProductSpecificationModel(1,"RAM", "8GB"));
-        productSpecificationModelList.add(new ProductSpecificationModel(1,"RAM", "8GB"));
-        productSpecificationModelList.add(new ProductSpecificationModel(1,"RAM", "8GB"));
-        productSpecificationModelList.add(new ProductSpecificationModel(1,"RAM", "8GB"));
-        productSpecificationModelList.add(new ProductSpecificationModel(1,"RAM", "8GB"));
-        productSpecificationModelList.add(new ProductSpecificationModel(1,"RAM", "8GB"));
-        productSpecificationModelList.add(new ProductSpecificationModel(1,"RAM", "8GB"));
 
-        productSpecificationModelList.add(new ProductSpecificationModel(0, "General"));
-        productSpecificationModelList.add(new ProductSpecificationModel(1,"RAM", "8GB"));
-        productSpecificationModelList.add(new ProductSpecificationModel(1,"RAM", "8GB"));
-        productSpecificationModelList.add(new ProductSpecificationModel(1,"RAM", "8GB"));
-        productSpecificationModelList.add(new ProductSpecificationModel(1,"RAM", "8GB"));
-        productSpecificationModelList.add(new ProductSpecificationModel(1,"RAM", "8GB"));
-        productSpecificationModelList.add(new ProductSpecificationModel(1,"RAM", "8GB"));
-        productSpecificationModelList.add(new ProductSpecificationModel(1,"RAM", "8GB"));
-        productSpecificationModelList.add(new ProductSpecificationModel(1,"RAM", "8GB"));
-        productSpecificationModelList.add(new ProductSpecificationModel(0, "Display"));
-        productSpecificationModelList.add(new ProductSpecificationModel(1,"RAM", "8GB"));
-        productSpecificationModelList.add(new ProductSpecificationModel(1,"RAM", "8GB"));
-        productSpecificationModelList.add(new ProductSpecificationModel(1,"RAM", "8GB"));
-        productSpecificationModelList.add(new ProductSpecificationModel(1,"RAM", "8GB"));
-        productSpecificationModelList.add(new ProductSpecificationModel(1,"RAM", "8GB"));
-        productSpecificationModelList.add(new ProductSpecificationModel(1,"RAM", "8GB"));
-        productSpecificationModelList.add(new ProductSpecificationModel(1,"RAM", "8GB"));
-        productSpecificationModelList.add(new ProductSpecificationModel(1,"RAM", "8GB"));
-        productSpecificationModelList.add(new ProductSpecificationModel(1,"RAM", "8GB"));
-        productSpecificationModelList.add(new ProductSpecificationModel(1,"RAM", "8GB"));
-*/
 
 
         ProductSpecificationAdapter productSpecificationAdapter = new ProductSpecificationAdapter(productSpecificationModelList);

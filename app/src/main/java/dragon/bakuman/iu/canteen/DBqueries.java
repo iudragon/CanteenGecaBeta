@@ -59,7 +59,6 @@ public class DBqueries {
 
     public static int selectedAddress = -1;
 
-    public static List<AddressesModel> addressesModelList = new ArrayList<>();
 
     public static List<dragon.bakuman.iu.canteen.RewardModel> rewardModelList = new ArrayList<>();
 
@@ -194,7 +193,9 @@ public class DBqueries {
                 if (task.isSuccessful()) {
 
                     if ((long) task.getResult().get("list_size") == 0) {
-                        loadingDialog.show();
+                        if (!((Activity) context).isFinishing()) {
+                            loadingDialog.show();
+                        }
                         wishlistModelList.clear();
                         wishlistAdapter = new WishlistAdapter(DBqueries.wishlistModelList, false);
 
@@ -326,7 +327,12 @@ public class DBqueries {
                 if (task.isSuccessful()) {
 
                     if ((long) task.getResult().get("list_size") == 0) {
-                        loadingDialog.show();
+
+                        if (!((Activity) context).isFinishing()){
+                            loadingDialog.show();
+
+
+                        }
                         speciallistModelList.clear();
 
                         speciallistAdapter = new SpeciallistAdapter(DBqueries.speciallistModelList, false);
@@ -455,11 +461,12 @@ public class DBqueries {
         //  loadingDialog.getWindow().setBackgroundDrawable(getDrawable(R.drawable.slider_background));
         loadingDialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
-        loadingDialog.show();
+        if (!((Activity) context).isFinishing()) {
+            loadingDialog.show();
+        }
 
         //final String removeProductId = wishlist.get(index);
         final int index = wishlist.indexOf(removeProductId);
-        Log.d("remove id", removeProductId);
         Toast.makeText(context, "remove=" + index, Toast.LENGTH_SHORT).show();
         wishlist.remove(index);
 
@@ -479,7 +486,6 @@ public class DBqueries {
 
                 if (task.isSuccessful()) {
 
-                    //    Log.d("list=",task.getResult().toString());
                     if (wishlistModelList.size() > 0) {
 
 
@@ -534,13 +540,14 @@ public class DBqueries {
         //  loadingDialog.getWindow().setBackgroundDrawable(getDrawable(R.drawable.slider_background));
         loadingDialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
-        loadingDialog.show();
+        if (!((Activity) context).isFinishing()) {
+            loadingDialog.show();
+        }
         //final String removeProductId = speciallist.get(index);
 
         //  speciallist.remove(index);
 
         final int index = speciallist.indexOf(removeProductId);
-        Log.d("remove id", removeProductId);
         //   Toast.makeText(context, "remove="+index, Toast.LENGTH_SHORT).show();
         speciallist.remove(index);
 
@@ -668,7 +675,6 @@ public class DBqueries {
         speciallistModelList.clear();
         myRatedIds.clear();
         myRating.clear();
-        addressesModelList.clear();
         rewardModelList.clear();
     }
 

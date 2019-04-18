@@ -136,11 +136,11 @@ public class WishlistAdapter extends RecyclerView.Adapter<WishlistAdapter.ViewHo
                         if (DBqueries.wishlistModelList.size() > 0) {
                             productId = DBqueries.wishlistModelList.get(index).getProductId();
                             // productId = wishlistModelList.get(index).getProductId();
-                            Log.d("remove index:", productId + " " + index);
 
                             DBqueries.removeFromWishlist(productId, itemView.getContext(), true);
-                        } else
-                            Log.d("list error=", "" + wishlistModelList.size());
+                        } else{
+
+                        }
 
                     }
                 }
