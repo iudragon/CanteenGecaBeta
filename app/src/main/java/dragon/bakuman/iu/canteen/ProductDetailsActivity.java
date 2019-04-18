@@ -369,12 +369,6 @@ public class ProductDetailsActivity extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
 
-                                        if (WISHLIST_BTN_CLICKED){
-                                            sendChannel2();
-                                        }
-
-
-
 
 
                                         if (DBqueries.wishlistModelList.size() != 0) {
@@ -451,9 +445,6 @@ public class ProductDetailsActivity extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
 
-                                        if (SPECIALIST_BTN_CLICKED){
-                                            sendChannel1();
-                                        }
 
 
                                         if (DBqueries.speciallistModelList.size() != 0) {
@@ -552,14 +543,6 @@ public class ProductDetailsActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
-        if (WISHLIST_BTN_CLICKED){
-            sendChannel2();
-        }
-
-        if (SPECIALIST_BTN_CLICKED){
-            sendChannel1();
-        }
 
 
         productDetailsTabsContainer.setVisibility(View.GONE);
