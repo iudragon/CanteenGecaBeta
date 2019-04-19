@@ -2,11 +2,10 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
 
     android:layout_margin="4dp"
-    android:background="#ffffff"
-    android:elevation="3dp">
+    android:background="#ffffff">
 
     <ImageView
         android:id="@+id/h_s_product_image"
@@ -43,12 +42,10 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="4dp"
         android:text="Black"
         android:textAlignment="center"
         android:textColor="@color/colorPrimary"
         android:textSize="10sp"
-        app:layout_constraintBottom_toTopOf="@+id/h_s_product_price"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/h_s_product_title" />
@@ -65,5 +62,6 @@
         android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/h_s_product_description" />
 </android.support.constraint.ConstraintLayout>
