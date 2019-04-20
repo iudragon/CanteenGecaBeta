@@ -2,7 +2,10 @@ package dragon.bakuman.iu.canteen;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.AppBarLayout;
@@ -37,6 +40,11 @@ public class MainActivity extends AppCompatActivity
     private FrameLayout frameLayout;
 
     private ConstraintLayout navHeaderSignIn;
+
+    private NetworkInfo networkInfo;
+
+    private ConnectivityManager connectivityManager;
+
 
     private ImageView headerProfileImage;
 
@@ -242,21 +250,28 @@ public class MainActivity extends AppCompatActivity
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.main_search_icon) {
+        connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 
-            gotoFragment(getString(R.string.available_to_eat), new MyWishlistFragment(), WISHLIST_FRAGMENT);
-            navigationView.getMenu().getItem(1).setChecked(true);
+        networkInfo = connectivityManager.getActiveNetworkInfo();
 
-            return true;
-        } else if (id == R.id.main_notification_icon) {
+        if (networkInfo != null && networkInfo.isConnected() == true) {
+            int id = item.getItemId();
 
-            gotoFragment(getString(R.string.special_of_the_day), new MySpeciallistFragment(), SPECIALLIST_FRAGMENT);
-            navigationView.getMenu().getItem(2).setChecked(true);
+            //noinspection SimplifiableIfStatement
+            if (id == R.id.main_search_icon) {
 
-            return true;
+                gotoFragment(getString(R.string.available_to_eat), new MyWishlistFragment(), WISHLIST_FRAGMENT);
+                navigationView.getMenu().getItem(1).setChecked(true);
+
+                return true;
+            } else if (id == R.id.main_notification_icon) {
+
+                gotoFragment(getString(R.string.special_of_the_day), new MySpeciallistFragment(), SPECIALLIST_FRAGMENT);
+                navigationView.getMenu().getItem(2).setChecked(true);
+
+                return true;
+            }
         }
 
         return super.onOptionsItemSelected(item);

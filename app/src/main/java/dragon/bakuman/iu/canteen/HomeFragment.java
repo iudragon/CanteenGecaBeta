@@ -35,6 +35,8 @@ import static dragon.bakuman.iu.canteen.DBqueries.loadedCategoriesNames;
 public class HomeFragment extends Fragment {
 
 
+
+
     public HomeFragment() {
         // Required empty public constructor
     }
@@ -43,7 +45,7 @@ public class HomeFragment extends Fragment {
 
     private NetworkInfo networkInfo;
 
-    public static SwipeRefreshLayout swipeRefreshLayout;
+//    public static SwipeRefreshLayout swipeRefreshLayout;
 
     private List<CategoryModel> categoryModelFakeList = new ArrayList<>();
 
@@ -69,9 +71,9 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
-        swipeRefreshLayout = view.findViewById(R.id.refresh_layout);
+//        swipeRefreshLayout = view.findViewById(R.id.refresh_layout);
 
-        swipeRefreshLayout.setColorSchemeColors(getContext().getResources().getColor(R.color.colorPrimary), getContext().getResources().getColor(R.color.colorPrimary), getContext().getResources().getColor(R.color.colorPrimary));
+//        swipeRefreshLayout.setColorSchemeColors(getContext().getResources().getColor(R.color.colorPrimary), getContext().getResources().getColor(R.color.colorPrimary), getContext().getResources().getColor(R.color.colorPrimary));
 
         noInternetConnection = view.findViewById(R.id.no_internet_connection);
 
@@ -153,7 +155,6 @@ public class HomeFragment extends Fragment {
         ///// home page fake list
 
 
-
         //////////////////////////////
 
         categoryAdapter = new CategoryAdapter(categoryModelFakeList);
@@ -210,16 +211,16 @@ public class HomeFragment extends Fragment {
 
         ///// refresh layout
 
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-
-                swipeRefreshLayout.setRefreshing(true);
-                reloadPage();
-
-
-            }
-        });
+//        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+//            @Override
+//            public void onRefresh() {
+//
+//                swipeRefreshLayout.setRefreshing(true);
+//                reloadPage();
+//
+//
+//            }
+//        });
 
         ///// refresh layout
 
@@ -273,14 +274,16 @@ public class HomeFragment extends Fragment {
 
             MainActivity.drawer.setDrawerLockMode(1);
 
-            Toast.makeText(getContext(), "No Internet NP Connection", Toast.LENGTH_SHORT).show();
+
+            Toast.makeText(getContext(), "No Internet Connection", Toast.LENGTH_SHORT).show();
             categoryRecyclerView.setVisibility(View.GONE);
             homePageRecyclerView.setVisibility(View.GONE);
+
             Glide.with(getContext()).load(R.drawable.ic_favorite).into(noInternetConnection);
             noInternetConnection.setVisibility(View.VISIBLE);
             retryButton.setVisibility(View.VISIBLE);
 
-            swipeRefreshLayout.setRefreshing(false);
+//            swipeRefreshLayout.setRefreshing(false);
         }
 
     }

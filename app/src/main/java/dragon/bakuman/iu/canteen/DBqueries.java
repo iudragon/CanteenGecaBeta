@@ -177,7 +177,7 @@ public class DBqueries {
                             homePageRecyclerView.setAdapter(homePageAdapter);
 
                             homePageAdapter.notifyDataSetChanged();
-                            HomeFragment.swipeRefreshLayout.setRefreshing(false);
+//                            HomeFragment.swipeRefreshLayout.setRefreshing(false);
 
                         } else {
 
