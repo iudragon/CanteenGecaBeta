@@ -29,7 +29,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static dragon.bakuman.iu.canteen.App.CHANNEL_1_ID;
 import static dragon.bakuman.iu.canteen.MySpeciallistFragment.speciallistAdapter;
 import static dragon.bakuman.iu.canteen.MyWishlistFragment.wishlistAdapter;
 

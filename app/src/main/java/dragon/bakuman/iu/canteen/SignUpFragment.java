@@ -204,7 +204,7 @@ public class SignUpFragment extends Fragment {
     private void checkEmailAndPassword() {
 
 
-        Drawable customErrorIcon = getResources().getDrawable(R.drawable.ic_fitness);
+        Drawable customErrorIcon = getResources().getDrawable(R.drawable.ic_add_circle);
         customErrorIcon.setBounds(0, 0, customErrorIcon.getIntrinsicWidth(), customErrorIcon.getIntrinsicHeight());
 
 

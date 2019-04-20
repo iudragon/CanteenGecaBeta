@@ -42,8 +42,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static dragon.bakuman.iu.canteen.App.CHANNEL_1_ID;
-import static dragon.bakuman.iu.canteen.App.CHANNEL_2_ID;
 import static dragon.bakuman.iu.canteen.RegisterActivity.setSignUpFragment;
 
 public class ProductDetailsActivity extends AppCompatActivity {
@@ -183,7 +181,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
         productDetailsTabsContainer = findViewById(R.id.product_details_tab_container);
 
-        productOnlyDescriptionBody = findViewById(R.id.product_details_body);
+
         loadingDialog = new Dialog(ProductDetailsActivity.this);
         loadingDialog.setContentView(R.layout.loading_progress_dialog);
 
@@ -667,34 +665,6 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
         productDetailsActivity = null;
         super.onBackPressed();
-
-    }
-
-    public void sendChannel1() {
-
-
-        Notification notification = new NotificationCompat.Builder(ProductDetailsActivity.this, CHANNEL_1_ID)
-                .setSmallIcon(R.drawable.githublogo)
-                .setContentTitle(documentSnapshot.get("product_title").toString())
-                .setContentText("Special of the day!")
-                .setPriority(NotificationCompat.PRIORITY_HIGH)
-                .setCategory(NotificationCompat.CATEGORY_MESSAGE)
-                .build();
-
-        notificationManager.notify(1, notification);
-
-    }
-
-    private void sendChannel2() {
-
-        Notification notification = new NotificationCompat.Builder(this, CHANNEL_2_ID)
-                .setSmallIcon(R.drawable.connect)
-                .setContentTitle(documentSnapshot.get("product_title").toString())
-                .setContentText("Available Now!")
-                .setPriority(NotificationCompat.PRIORITY_LOW)
-                .build();
-
-        notificationManager.notify(2, notification);
 
     }
 

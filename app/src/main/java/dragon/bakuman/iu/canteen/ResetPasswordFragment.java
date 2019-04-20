@@ -144,7 +144,7 @@ public class ResetPasswordFragment extends Fragment {
 
                                 @Override
                                 public void onAnimationRepeat(Animation animation) {
-                                    emailIcon.setImageResource(R.drawable.ic_mail_green);
+                                    emailIcon.setImageResource(R.drawable.ic_info);
                                 }
                             });
 

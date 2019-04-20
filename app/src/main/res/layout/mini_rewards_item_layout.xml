@@ -18,7 +18,7 @@
         android:tint="#ffffff"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_card_giftcard" />
+        app:srcCompat="@drawable/ic_add_circle" />
 
     <TextView
         android:id="@+id/coupon_title"
