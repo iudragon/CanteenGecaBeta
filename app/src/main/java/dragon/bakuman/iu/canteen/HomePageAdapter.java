@@ -57,6 +57,10 @@ public class HomePageAdapter extends RecyclerView.Adapter {
 
                 return HomePageModel.HORIZONTAL_PRODUCT_VIEW;
 
+            case 6:
+
+                return HomePageModel.DUPLICATE_HORIZ_PRO_VIEW;
+
             case 3:
                 return HomePageModel.GRID_PRODUCT_VIEW;
 
@@ -92,6 +96,13 @@ public class HomePageAdapter extends RecyclerView.Adapter {
                 View horizontalProductView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.horizontal_scroll_layout, viewGroup, false);
 
                 return new HorizontalProductViewHolder(horizontalProductView);
+
+            case HomePageModel.DUPLICATE_HORIZ_PRO_VIEW:
+
+                View duplicateHorizProView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.duplicate_horiz_scroll_layout, viewGroup, false);
+
+                return new HorizontalProductViewHolderDuplicate(duplicateHorizProView);
+
 
             case HomePageModel.GRID_PRODUCT_VIEW:
 
@@ -143,6 +154,26 @@ public class HomePageAdapter extends RecyclerView.Adapter {
 
 
                 break;
+
+
+            /////////////////////
+
+            case HomePageModel.DUPLICATE_HORIZ_PRO_VIEW:
+
+                String layoutColorDuplicate = homePageModelList.get(position).getBackgroundColor();
+                String horizontalLayoutTitleDuplicate = homePageModelList.get(position).getTitle();
+
+                List<WishlistModel> viewAllProductListDuplicate = homePageModelList.get(position).getViewAllProductList();
+
+                List<HorizontalProductScrollModel> horizontalProductScrollModelListDuplicate = homePageModelList.get(position).getHorizontalProductScrollModelList();
+
+                ((HorizontalProductViewHolderDuplicate) viewHolder).setHorizontalProductLayoutDuplicate(horizontalProductScrollModelListDuplicate, horizontalLayoutTitleDuplicate, layoutColorDuplicate, viewAllProductListDuplicate);
+
+
+                break;
+
+            /////////////////////
+
 
             case HomePageModel.GRID_PRODUCT_VIEW:
 
@@ -409,6 +440,83 @@ public class HomePageAdapter extends RecyclerView.Adapter {
         }
 
     }
+
+
+
+
+    //////////////////////////////
+
+
+    public class HorizontalProductViewHolderDuplicate extends RecyclerView.ViewHolder {
+
+        private ConstraintLayout containerDuplicate;
+        private Button horizontalLayoutViewAllBtnDuplicate;
+        private TextView horizontalLayoutTitleDuplicate;
+        private RecyclerView horizontalRecyclerViewDuplicate;
+
+        public HorizontalProductViewHolderDuplicate(@NonNull View itemView) {
+            super(itemView);
+
+            containerDuplicate = itemView.findViewById(R.id.container_duplicate);
+            horizontalLayoutTitleDuplicate = itemView.findViewById(R.id.horizontal_scroll_layout_title_duplicate);
+            horizontalLayoutViewAllBtnDuplicate = itemView.findViewById(R.id.horizontal_scroll_view_all_button_duplicate);
+            horizontalRecyclerViewDuplicate = itemView.findViewById(R.id.horizontal_product_scroll_layout_recyclerview_duplicate);
+            horizontalRecyclerViewDuplicate.setRecycledViewPool(recycledViewPool);
+
+        }
+
+
+        private void setHorizontalProductLayoutDuplicate(List<HorizontalProductScrollModel> horizontalProductScrollModelList, final String title, String color, final List<WishlistModel> viewAllProductList) {
+
+            containerDuplicate.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor(color)));
+            horizontalLayoutTitleDuplicate.setText(title);
+
+
+            if (horizontalProductScrollModelList.size() > 8) {
+
+                horizontalLayoutViewAllBtnDuplicate.setVisibility(View.VISIBLE);
+                horizontalLayoutViewAllBtnDuplicate.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        ViewAllActivity.wishlistModelList = viewAllProductList;
+
+                        Intent viewAllIntent = new Intent(itemView.getContext(), ViewAllActivity.class);
+                        viewAllIntent.putExtra("layout_code", 2);
+                        viewAllIntent.putExtra("title", title);
+                        itemView.getContext().startActivity(viewAllIntent);
+                    }
+                });
+
+            } else {
+
+                horizontalLayoutViewAllBtnDuplicate.setVisibility(View.INVISIBLE);
+
+
+            }
+
+            HorizontalProductScrollAdapter horizontalProductScrollAdapter = new HorizontalProductScrollAdapter(horizontalProductScrollModelList);
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(itemView.getContext());
+            linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+            horizontalRecyclerViewDuplicate.setLayoutManager(linearLayoutManager);
+
+            horizontalRecyclerViewDuplicate.setAdapter(horizontalProductScrollAdapter);
+            horizontalProductScrollAdapter.notifyDataSetChanged();
+
+        }
+
+    }
+
+
+
+    //////////////////////////////
+
+
+
+
+
+
+
 
     public class GridProductViewHolder extends RecyclerView.ViewHolder {
 

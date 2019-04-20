@@ -47,7 +47,20 @@ public class ViewAllActivity extends AppCompatActivity {
             recyclerView.setAdapter(adapter);
             adapter.notifyDataSetChanged();
 
-        } else if (layout_code == 1) {
+        } else if (layout_code == 2) {
+
+            recyclerView.setVisibility(View.VISIBLE);
+            LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+            layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+            recyclerView.setLayoutManager(layoutManager);
+
+            WishlistAdapter adapter = new WishlistAdapter(wishlistModelList, false);
+            recyclerView.setAdapter(adapter);
+            adapter.notifyDataSetChanged();
+
+        }
+
+        else if (layout_code == 1) {
 
             gridView.setVisibility(View.VISIBLE);
 

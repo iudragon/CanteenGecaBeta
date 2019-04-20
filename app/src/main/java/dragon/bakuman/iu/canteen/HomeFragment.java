@@ -131,9 +131,30 @@ public class HomeFragment extends Fragment {
         homePageModelFakeList.add(new HomePageModel(0, sliderModelFakeList));
         homePageModelFakeList.add(new HomePageModel(1, "", "#defeed"));
         homePageModelFakeList.add(new HomePageModel(2, "", "#defeed", horizontalProductScrollModelFakeList, new ArrayList<WishlistModel>()));
+        homePageModelFakeList.add(new HomePageModel(6, "", "#defeed", horizontalProductScrollModelFakeList, new ArrayList<WishlistModel>()));
         homePageModelFakeList.add(new HomePageModel(3, "", "#defeed", horizontalProductScrollModelFakeList));
 
         ///// home page fake list
+
+
+        //////////////////////////////
+
+
+        List<HorizontalProductScrollModel> horizontalProductScrollModelFakeListDuplicate = new ArrayList<>();
+
+        horizontalProductScrollModelFakeListDuplicate.add(new HorizontalProductScrollModel("", "", "", "", ""));
+        horizontalProductScrollModelFakeListDuplicate.add(new HorizontalProductScrollModel("", "", "", "", ""));
+        horizontalProductScrollModelFakeListDuplicate.add(new HorizontalProductScrollModel("", "", "", "", ""));
+        horizontalProductScrollModelFakeListDuplicate.add(new HorizontalProductScrollModel("", "", "", "", ""));
+        horizontalProductScrollModelFakeListDuplicate.add(new HorizontalProductScrollModel("", "", "", "", ""));
+        horizontalProductScrollModelFakeListDuplicate.add(new HorizontalProductScrollModel("", "", "", "", ""));
+
+
+        ///// home page fake list
+
+
+
+        //////////////////////////////
 
         categoryAdapter = new CategoryAdapter(categoryModelFakeList);
 

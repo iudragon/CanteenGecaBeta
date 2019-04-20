@@ -10,6 +10,8 @@ public class HomePageModel {
 
     public static final int HORIZONTAL_PRODUCT_VIEW = 2;
 
+    public static final int DUPLICATE_HORIZ_PRO_VIEW = 6;
+
     public static final int GRID_PRODUCT_VIEW = 3;
 
     private int type;
@@ -76,11 +78,11 @@ public class HomePageModel {
     ///////// Strip Ad
 
 
-
     private String title;
     private List<HorizontalProductScrollModel> horizontalProductScrollModelList;
 
     ///////// Horizontal Product Layout
+
 
     private List<WishlistModel> viewAllProductList;
     public HomePageModel(int type, String title, String backgroundColor, List<HorizontalProductScrollModel> horizontalProductScrollModelList, List<WishlistModel> viewAllProductList) {
@@ -102,7 +104,6 @@ public class HomePageModel {
     ///////// Horizontal Product Layout
 
 
-    ///////// Grid Product Layout
 
     public HomePageModel(int type, String title, String backgroundColor, List<HorizontalProductScrollModel> horizontalProductScrollModelList) {
         this.type = type;
