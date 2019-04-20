@@ -2,15 +2,10 @@ package dragon.bakuman.iu.canteen;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.app.Notification;
 import android.content.Context;
-import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.support.annotation.NonNull;
-import android.support.v4.app.NotificationCompat;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
@@ -28,6 +23,14 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import dragon.bakuman.iu.canteen.model.CategoryModel;
+import dragon.bakuman.iu.canteen.model.HomePageModel;
+import dragon.bakuman.iu.canteen.model.HorizontalProductScrollModel;
+import dragon.bakuman.iu.canteen.model.RewardModel;
+import dragon.bakuman.iu.canteen.model.SliderModel;
+import dragon.bakuman.iu.canteen.model.SpeciallistModel;
+import dragon.bakuman.iu.canteen.model.WishlistModel;
 
 import static dragon.bakuman.iu.canteen.MySpeciallistFragment.speciallistAdapter;
 import static dragon.bakuman.iu.canteen.MyWishlistFragment.wishlistAdapter;
@@ -59,7 +62,7 @@ public class DBqueries {
     public static int selectedAddress = -1;
 
 
-    public static List<dragon.bakuman.iu.canteen.RewardModel> rewardModelList = new ArrayList<>();
+    public static List<RewardModel> rewardModelList = new ArrayList<>();
 
     public static void loadCategories(final RecyclerView categoryRecyclerView, final Context context) {
 
@@ -646,7 +649,7 @@ public class DBqueries {
                                 for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
 
                                     if (documentSnapshot.get("type").toString().contains("") && lastseenDate.before(documentSnapshot.getDate("validity"))) {
-                                        rewardModelList.add(new dragon.bakuman.iu.canteen.RewardModel(documentSnapshot.getId(), documentSnapshot.get("type").toString(),
+                                        rewardModelList.add(new RewardModel(documentSnapshot.getId(), documentSnapshot.get("type").toString(),
                                                 documentSnapshot.get("lower_limit").toString(),
                                                 documentSnapshot.get("upper_limit").toString(),
                                                 documentSnapshot.get("percentage").toString(),

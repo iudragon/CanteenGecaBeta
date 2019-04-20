@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
+import dragon.bakuman.iu.canteen.model.ProductSpecificationModel;
+
 
 /**
  * A simple {@link Fragment} subclass.

@@ -1,4 +1,4 @@
-package dragon.bakuman.iu.canteen;
+package dragon.bakuman.iu.canteen.model;
 
 public class ProductSpecificationModel {
 

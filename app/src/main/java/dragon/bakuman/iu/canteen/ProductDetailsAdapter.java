@@ -6,6 +6,8 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import java.util.List;
 
+import dragon.bakuman.iu.canteen.model.ProductSpecificationModel;
+
 public class ProductDetailsAdapter extends FragmentPagerAdapter {
 
     private int totalTabs;

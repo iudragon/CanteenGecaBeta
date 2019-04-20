@@ -14,6 +14,8 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import dragon.bakuman.iu.canteen.model.ProductSpecificationModel;
+
 public class ProductSpecificationAdapter extends RecyclerView.Adapter<ProductSpecificationAdapter.ViewHolder> {
 
 

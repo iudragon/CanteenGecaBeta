@@ -2,7 +2,6 @@ package dragon.bakuman.iu.canteen;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.app.Notification;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.res.ColorStateList;
@@ -11,15 +10,12 @@ import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,6 +37,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import dragon.bakuman.iu.canteen.model.ProductSpecificationModel;
+import dragon.bakuman.iu.canteen.model.SpeciallistModel;
+import dragon.bakuman.iu.canteen.model.WishlistModel;
 
 import static dragon.bakuman.iu.canteen.RegisterActivity.setSignUpFragment;
 

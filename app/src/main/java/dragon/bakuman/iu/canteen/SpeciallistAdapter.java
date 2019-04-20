@@ -4,7 +4,6 @@ package dragon.bakuman.iu.canteen;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +19,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import java.util.List;
+
+import dragon.bakuman.iu.canteen.model.SpeciallistModel;
 
 public class SpeciallistAdapter extends RecyclerView.Adapter<SpeciallistAdapter.ViewHolder> {
 

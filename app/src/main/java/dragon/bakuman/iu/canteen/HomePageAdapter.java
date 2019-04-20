@@ -28,6 +28,11 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import dragon.bakuman.iu.canteen.model.HomePageModel;
+import dragon.bakuman.iu.canteen.model.HorizontalProductScrollModel;
+import dragon.bakuman.iu.canteen.model.SliderModel;
+import dragon.bakuman.iu.canteen.model.WishlistModel;
+
 public class HomePageAdapter extends RecyclerView.Adapter {
 
     private List<HomePageModel> homePageModelList;

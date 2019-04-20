@@ -11,6 +11,10 @@ import android.view.MenuItem;
 import java.util.ArrayList;
 import java.util.List;
 
+import dragon.bakuman.iu.canteen.model.HomePageModel;
+import dragon.bakuman.iu.canteen.model.HorizontalProductScrollModel;
+import dragon.bakuman.iu.canteen.model.SliderModel;
+
 import static dragon.bakuman.iu.canteen.DBqueries.lists;
 import static dragon.bakuman.iu.canteen.DBqueries.loadFragmentData;
 import static dragon.bakuman.iu.canteen.DBqueries.loadedCategoriesNames;

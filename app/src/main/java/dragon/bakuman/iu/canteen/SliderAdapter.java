@@ -15,6 +15,8 @@ import com.bumptech.glide.request.RequestOptions;
 
 import java.util.List;
 
+import dragon.bakuman.iu.canteen.model.SliderModel;
+
 public class SliderAdapter extends PagerAdapter {
 
 

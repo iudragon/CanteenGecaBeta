@@ -12,13 +12,15 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import dragon.bakuman.iu.canteen.model.RewardModel;
+
 public class MyRewardsAdapter extends RecyclerView.Adapter<MyRewardsAdapter.ViewHolder> {
 
-    private List<dragon.bakuman.iu.canteen.RewardModel> rewardModelList;
+    private List<RewardModel> rewardModelList;
 
     private Boolean useMiniLayout = false;
 
-    public MyRewardsAdapter(List<dragon.bakuman.iu.canteen.RewardModel> rewardModelList, Boolean useMiniLayout) {
+    public MyRewardsAdapter(List<RewardModel> rewardModelList, Boolean useMiniLayout) {
         this.rewardModelList = rewardModelList;
         this.useMiniLayout = useMiniLayout;
     }

@@ -19,6 +19,8 @@ import com.google.firebase.auth.FirebaseUser;
 
 import java.util.List;
 
+import dragon.bakuman.iu.canteen.model.WishlistModel;
+
 public class WishlistAdapter extends RecyclerView.Adapter<WishlistAdapter.ViewHolder> {
 
     private List<WishlistModel> wishlistModelList;

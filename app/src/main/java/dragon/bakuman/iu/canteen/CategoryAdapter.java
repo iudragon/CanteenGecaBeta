@@ -16,6 +16,8 @@ import com.bumptech.glide.request.RequestOptions;
 
 import java.util.List;
 
+import dragon.bakuman.iu.canteen.model.CategoryModel;
+
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHolder> {
 
     private List<CategoryModel> categoryModelList;

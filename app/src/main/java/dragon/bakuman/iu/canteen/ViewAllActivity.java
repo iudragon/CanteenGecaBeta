@@ -11,6 +11,9 @@ import android.widget.GridView;
 
 import java.util.List;
 
+import dragon.bakuman.iu.canteen.model.HorizontalProductScrollModel;
+import dragon.bakuman.iu.canteen.model.WishlistModel;
+
 public class ViewAllActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;

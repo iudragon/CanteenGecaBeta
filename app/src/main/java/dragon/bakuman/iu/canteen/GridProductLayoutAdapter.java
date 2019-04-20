@@ -14,6 +14,8 @@ import com.bumptech.glide.request.RequestOptions;
 
 import java.util.List;
 
+import dragon.bakuman.iu.canteen.model.HorizontalProductScrollModel;
+
 public class GridProductLayoutAdapter extends BaseAdapter {
 
 

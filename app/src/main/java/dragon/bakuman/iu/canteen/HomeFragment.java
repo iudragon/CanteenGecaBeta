@@ -6,7 +6,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -21,6 +20,12 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import dragon.bakuman.iu.canteen.model.CategoryModel;
+import dragon.bakuman.iu.canteen.model.HomePageModel;
+import dragon.bakuman.iu.canteen.model.HorizontalProductScrollModel;
+import dragon.bakuman.iu.canteen.model.SliderModel;
+import dragon.bakuman.iu.canteen.model.WishlistModel;
 
 import static dragon.bakuman.iu.canteen.DBqueries.categoryModelList;
 import static dragon.bakuman.iu.canteen.DBqueries.lists;
