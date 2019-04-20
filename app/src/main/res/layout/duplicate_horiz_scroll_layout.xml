@@ -30,7 +30,7 @@
         android:layout_marginEnd="8dp"
         android:background="@drawable/slider_background"
         android:text="View All"
-        android:textColor="@color/colorDrinksMaybe"
+        android:textColor="@color/colorPrimary"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
