@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -67,6 +68,8 @@ public class HomeFragment extends Fragment {
 
     private ImageView noInternetConnection;
 
+    private TextView noInternetTextConnection;
+
     public Button retryButton;
 
 
@@ -81,6 +84,8 @@ public class HomeFragment extends Fragment {
 //        swipeRefreshLayout.setColorSchemeColors(getContext().getResources().getColor(R.color.colorPrimary), getContext().getResources().getColor(R.color.colorPrimary), getContext().getResources().getColor(R.color.colorPrimary));
 
         noInternetConnection = view.findViewById(R.id.no_internet_connection);
+
+        noInternetTextConnection = view.findViewById(R.id.no_internet_connection_text);
 
 
         categoryRecyclerView = view.findViewById(R.id.category_recyclerview);
@@ -175,6 +180,7 @@ public class HomeFragment extends Fragment {
             MainActivity.drawer.setDrawerLockMode(0);
 
             noInternetConnection.setVisibility(View.GONE);
+            noInternetTextConnection.setVisibility(View.GONE);
             retryButton.setVisibility(View.GONE);
             categoryRecyclerView.setVisibility(View.VISIBLE);
             homePageRecyclerView.setVisibility(View.VISIBLE);
@@ -208,8 +214,11 @@ public class HomeFragment extends Fragment {
             categoryRecyclerView.setVisibility(View.GONE);
             homePageRecyclerView.setVisibility(View.GONE);
 
-            Glide.with(this).load(R.drawable.ic_favorite).into(noInternetConnection);
+            Glide.with(this).load(R.drawable.ic_signal_wifi_off).into(noInternetConnection);
             noInternetConnection.setVisibility(View.VISIBLE);
+
+            noInternetTextConnection.setText("Please check your internet connection!");
+            noInternetTextConnection.setVisibility(View.VISIBLE);
 
             retryButton.setVisibility(View.VISIBLE);
         }
@@ -255,6 +264,7 @@ public class HomeFragment extends Fragment {
             MainActivity.drawer.setDrawerLockMode(0);
 
             noInternetConnection.setVisibility(View.GONE);
+            noInternetTextConnection.setVisibility(View.GONE);
 
             retryButton.setVisibility(View.GONE);
 
@@ -284,8 +294,10 @@ public class HomeFragment extends Fragment {
             categoryRecyclerView.setVisibility(View.GONE);
             homePageRecyclerView.setVisibility(View.GONE);
 
-            Glide.with(getContext()).load(R.drawable.ic_favorite).into(noInternetConnection);
+            Glide.with(getContext()).load(R.drawable.ic_signal_wifi_off).into(noInternetConnection);
             noInternetConnection.setVisibility(View.VISIBLE);
+            noInternetTextConnection.setText("Please check your internet connection!");
+            noInternetTextConnection.setVisibility(View.VISIBLE);
             retryButton.setVisibility(View.VISIBLE);
 
 //            swipeRefreshLayout.setRefreshing(false);
