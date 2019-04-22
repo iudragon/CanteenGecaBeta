@@ -33,7 +33,7 @@ public class MySpeciallistFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_my_speciallist, container, false);
 
-        ///// loading dialog
+        ///// loading Dialog
 
         loadingDialog = new Dialog(getContext());
         loadingDialog.setContentView(R.layout.loading_progress_dialog);
@@ -46,7 +46,7 @@ public class MySpeciallistFragment extends Fragment {
 
         loadingDialog.show();
 
-        ///// loading dialog
+        ///// loading Dialog
 
         speciallistRecyclerView = view.findViewById(R.id.my_special_recycler_view);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());

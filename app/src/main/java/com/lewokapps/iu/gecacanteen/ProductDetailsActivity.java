@@ -2,7 +2,7 @@ package com.lewokapps.iu.gecacanteen;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.app.ProgressDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
@@ -125,7 +125,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
     private FirebaseFirestore firebaseFirestore;
 
-    ///// coupon dialog
+    ///// coupon Dialog
 
     public static TextView couponTitle;
     public static TextView couponExpiryDate;
@@ -133,7 +133,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
     private static RecyclerView couponsRecyclerView;
     private static LinearLayout selectedCoupon;
 
-    ///// coupon dialog
+    ///// coupon Dialog
 
     private Dialog loadingDialog;
 
@@ -152,7 +152,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_details);
-        final ProgressDialog progressDialog = new ProgressDialog(this);
+//        final Dialog Dialog = new Dialog(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -182,15 +182,15 @@ public class ProductDetailsActivity extends AppCompatActivity {
         productDetailsTabsContainer = findViewById(R.id.product_details_tab_container);
 
 
-        loadingDialog = new Dialog(ProductDetailsActivity.this);
-        loadingDialog.setContentView(R.layout.loading_progress_dialog);
-
-        loadingDialog.setCancelable(false);
-
-        loadingDialog.getWindow().setBackgroundDrawable(getDrawable(R.drawable.slider_background));
-        loadingDialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-
-        loadingDialog.show();
+//        loadingDialog = new Dialog(ProductDetailsActivity.this);
+//        loadingDialog.setContentView(R.layout.loading_progress_dialog);
+//
+//        loadingDialog.setCancelable(false);
+//
+//        loadingDialog.getWindow().setBackgroundDrawable(getDrawable(R.drawable.slider_background));
+//        loadingDialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+//
+//        loadingDialog.show();
 
         productDetailsTabsContainer.setVisibility(View.VISIBLE);
 
@@ -268,10 +268,10 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
                                     if (DBqueries.wishlist.size() == 0) {
 
-                                        DBqueries.loadWishlist(ProductDetailsActivity.this, loadingDialog, true);
+                                        DBqueries.loadWishlist(ProductDetailsActivity.this,  loadingDialog,true);
 
                                     } else {
-                                        //  loadingDialog.dismiss();
+//                                          //loading dialog pda
 
                                     }
 
@@ -280,12 +280,12 @@ public class ProductDetailsActivity extends AppCompatActivity {
                                         DBqueries.loadSpeciallist(ProductDetailsActivity.this, loadingDialog, true);
 
                                     } else {
-                                        //   loadingDialog.dismiss();
+                                        //   //loading dialog pda
                                     }
 
 
                                 } else {
-                                    //  loadingDialog.dismiss();
+                                    //  //loading dialog pda
 
                                 }
 
@@ -316,7 +316,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
                     });
 
                 } else {
-                    // loadingDialog.dismiss();
+                    // //loading dialog pda
                     String error = task.getException().getMessage();
                     Toast.makeText(ProductDetailsActivity.this, error, Toast.LENGTH_SHORT).show();
 
@@ -325,7 +325,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
             }
 
         });
-        loadingDialog.dismiss();
+//        //loading dialog pda
 
         viewPagerIndicator.setupWithViewPager(productImagesViewPager, true);
 
@@ -507,125 +507,101 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(ProductDetailsActivity.this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        ///// sign in dialog
+        ///// sign in Dialog
 
 
-        signInDialog = new Dialog(ProductDetailsActivity.this);
-        signInDialog.setContentView(R.layout.sign_in_dialog);
+//        signInDialog = new Dialog(ProductDetailsActivity.this);
+//        signInDialog.setContentView(R.layout.sign_in_dialog);
+//
+//        signInDialog.setCancelable(true);
+//
+//        signInDialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
-        signInDialog.setCancelable(true);
-
-        signInDialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-
-        Button dialogSignInBtn = signInDialog.findViewById(R.id.sign_in_btn);
-//        Button dialogSignUpBtn = signInDialog.findViewById(R.id.sign_up_btn);
+//        Button DialogSignInBtn = signInDialog.findViewById(R.id.sign_in_btn);
+//        Button DialogSignUpBtn = signInDialog.findViewById(R.id.sign_up_btn);
         final Intent registerIntent = new Intent(ProductDetailsActivity.this, RegisterActivity.class);
 
-        dialogSignInBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+//        DialogSignInBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                SignInFragment.disableCloseBtn = true;
+//                SignUpFragment.disableCloseBtn = true;
+//
+//                signInDialog.dismiss();
+//                setSignUpFragment = false;
+//                startActivity(registerIntent);
+//            }
+//        });
 
-                SignInFragment.disableCloseBtn = true;
-                SignUpFragment.disableCloseBtn = true;
+        ///// sign in Dialog
 
-                signInDialog.dismiss();
-                setSignUpFragment = false;
-                startActivity(registerIntent);
-            }
-        });
-
-        ///// sign in dialog
-
+        currentUser = FirebaseAuth.getInstance().getCurrentUser();
     }
 
     @Override
     protected void onStart() {
         super.onStart();
 
-
-        productDetailsTabsContainer.setVisibility(View.GONE);
-
-
-        if (DBqueries.wishlistModelList.size() == 0) {
-
-
-            DBqueries.wishlist.clear();
-
-            DBqueries.loadWishlist(ProductDetailsActivity.this, loadingDialog, true);
-
-        } else {
-
-
-            DBqueries.loadWishlist(ProductDetailsActivity.this, loadingDialog, true);
-
-        }
-
-        if (DBqueries.speciallistModelList.size() == 0) {
-
-
-            DBqueries.speciallist.clear();
-
-            DBqueries.loadSpeciallist(ProductDetailsActivity.this, loadingDialog, true);
-
-
-        } else {
-
-
-            DBqueries.loadSpeciallist(ProductDetailsActivity.this, loadingDialog, true);
-
-        }
-
-
-        currentUser = FirebaseAuth.getInstance().getCurrentUser();
-
-
+//        currentUser = FirebaseAuth.getInstance().getCurrentUser();
+//
+//
         if (currentUser != null) {
+            if (DBqueries.wishlist.contains(productID)) {
 
-            if (DBqueries.wishlist.size() == 0) {
-
-
+                ALREADY_ADDED_TO_WISHLIST = true;
+                addToWishlistBtn.setSupportImageTintList(getResources().getColorStateList(R.color.colorAccent));
             } else {
-                loadingDialog.dismiss();
+
+                addToWishlistBtn.setSupportImageTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorPrimary)));
+
+                ALREADY_ADDED_TO_WISHLIST = false;
             }
 
             //// SPECIAL
 
-            if (DBqueries.speciallist.size() == 0) {
+            if (DBqueries.speciallist.contains(productID)) {
 
+                ALREADY_ADDED_TO_SPECIALLIST = true;
+                addToSpeciallistBtn.setSupportImageTintList(getResources().getColorStateList(R.color.colorAccent));
             } else {
-                loadingDialog.dismiss();
+
+                addToSpeciallistBtn.setSupportImageTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorPrimary)));
+
+                ALREADY_ADDED_TO_SPECIALLIST = false;
             }
+
+//
+
+//            if (DBqueries.wishlist.size() == 0) {
+//
+//                DBqueries.loadWishlist(ProductDetailsActivity.this, loadingDialog, false);
+//
+//
+//            } else {
+//                loadingDialog.dismiss();
+//            }
 
             //// SPECIAL
 
-        } else {
-            loadingDialog.dismiss();
+//            if (DBqueries.speciallist.size() == 0) {
+//
+//                DBqueries.loadSpeciallist(ProductDetailsActivity.this, loadingDialog, false);
+//
+//
+//            } else {
+//                loadingDialog.dismiss();
+//            }
+
+            //// SPECIAL
+
+
+//        } else {
+//            loadingDialog.dismiss();
+//        }}
+
         }
 
-
-        if (DBqueries.wishlist.contains(productID)) {
-
-            ALREADY_ADDED_TO_WISHLIST = true;
-            addToWishlistBtn.setSupportImageTintList(getResources().getColorStateList(R.color.colorAvailable));
-        } else {
-
-            addToWishlistBtn.setSupportImageTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorGreyNoItems)));
-
-            ALREADY_ADDED_TO_WISHLIST = false;
-        }
-
-        //// SPECIAL
-
-        if (DBqueries.speciallist.contains(productID)) {
-
-            ALREADY_ADDED_TO_SPECIALLIST = true;
-            addToSpeciallistBtn.setSupportImageTintList(getResources().getColorStateList(R.color.colorAvailable));
-        } else {
-
-            addToSpeciallistBtn.setSupportImageTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorGreyNoItems)));
-
-            ALREADY_ADDED_TO_SPECIALLIST = false;
-        }
 
         //// SPECIAL
 

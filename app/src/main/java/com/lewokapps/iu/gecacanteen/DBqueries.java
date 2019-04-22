@@ -2,6 +2,7 @@ package com.lewokapps.iu.gecacanteen;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.support.annotation.NonNull;
@@ -191,7 +192,7 @@ public class DBqueries {
                 });
     }
 
-    public static void loadWishlist(final Context context, final Dialog dialog, final boolean loadProductData) {
+    public static void loadWishlist(final Context context,final Dialog Dialog, final boolean loadProductData) {
 
 
         wishlist.clear();
@@ -201,9 +202,9 @@ public class DBqueries {
 
         loadingDialog.setCancelable(false);
         loadingDialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        if (!((Activity) context).isFinishing()) {
+//        if (!((Activity) context).isFinishing()) {
             loadingDialog.show();
-        }
+//        }
 
 
         firebaseFirestore.collection("USERS").document("HyJKnZQSsBRvlJPvEgzKGQSY9Oy1").collection("USER_DATA").document("MY_WISHLIST").get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -215,9 +216,11 @@ public class DBqueries {
 
                     if ((long) task.getResult().get("list_size") == 0) {
                         if (!((Activity) context).isFinishing()) {
-                            loadingDialog.show();
+//                            loadingDialog.show();
+                        }else {
+                            wishlistModelList.clear();
+
                         }
-                        wishlistModelList.clear();
                         wishlistAdapter = new WishlistAdapter(DBqueries.wishlistModelList, false);
 
                         wishlistAdapter.notifyDataSetChanged();
@@ -264,7 +267,8 @@ public class DBqueries {
                             if (!((Activity) context).isFinishing()) {
                                 loadingDialog.show();
                             }
-                            wishlistModelList.clear();
+                                wishlistModelList.clear();
+
 
                             final String productId = task.getResult().get("product_ID_" + x).toString();
                             firebaseFirestore.collection("PRODUCTS").document(productId).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -305,17 +309,17 @@ public class DBqueries {
                         }
 
                     }
-                    //  loadingDialog.dismiss();
+                      loadingDialog.dismiss();
 
                 } else {
                     String error = task.getException().getMessage();
                     Toast.makeText(context, error, Toast.LENGTH_SHORT).show();
-                    //   loadingDialog.dismiss();
+                       loadingDialog.dismiss();
 
                 }
 
                 loadingDialog.dismiss();
-                dialog.dismiss();
+                Dialog.dismiss();
             }
 
 
@@ -326,7 +330,7 @@ public class DBqueries {
     //// SPECIAL
 
 
-    public static void loadSpeciallist(final Context context, final Dialog dialog, final boolean loadProductData) {
+    public static void loadSpeciallist(final Context context, final Dialog Dialog, final boolean loadProductData) {
 
 
         speciallist.clear();
@@ -353,8 +357,10 @@ public class DBqueries {
                             loadingDialog.show();
 
 
+                        } else {
+                            speciallistModelList.clear();
+
                         }
-                        speciallistModelList.clear();
 
                         speciallistAdapter = new SpeciallistAdapter(DBqueries.speciallistModelList, false);
                         speciallistAdapter.notifyDataSetChanged();
@@ -400,9 +406,11 @@ public class DBqueries {
                             loadingDialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                             if (!((Activity) context).isFinishing()) {
                                 loadingDialog.show();
+                            } else {
+                                speciallistModelList.clear();
+
                             }
 
-                            speciallistModelList.clear();
 
                             final String productId = task.getResult().get("product_ID_" + x).toString();
 
@@ -442,7 +450,7 @@ public class DBqueries {
                                             }
                                         });
 
-                                        // loadingDialog.dismiss();
+//                                         loadingDialog.dismiss();
 
 
                                     } else {
@@ -464,7 +472,7 @@ public class DBqueries {
 
                 }
                 loadingDialog.dismiss();
-                dialog.dismiss();
+                Dialog.dismiss();
             }
         });
     }
@@ -515,7 +523,7 @@ public class DBqueries {
                         if (reload == true) {
 
                             Toast.makeText(context, "reloading", Toast.LENGTH_SHORT).show();
-                            loadWishlist(context, loadingDialog, true);
+                            loadWishlist(context, loadingDialog,  true);
                             wishlistAdapter.notifyDataSetChanged();
 
                         }

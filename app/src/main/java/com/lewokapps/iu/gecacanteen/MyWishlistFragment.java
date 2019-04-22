@@ -7,8 +7,10 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 
 /**
@@ -20,7 +22,7 @@ public class MyWishlistFragment extends Fragment {
     public MyWishlistFragment() {
         // Required empty public constructor
 
-     //   wishlistRecyclerView = findViewById(R.id.my_wishlist_recycler_view);
+        //   wishlistRecyclerView = findViewById(R.id.my_wishlist_recycler_view);
 
     }
 
@@ -36,7 +38,7 @@ public class MyWishlistFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_my_wishlist, container, false);
 
-        ///// loading dialog
+        ///// loading Dialog
 
         loadingDialog = new Dialog(getContext());
         loadingDialog.setContentView(R.layout.loading_progress_dialog);
@@ -47,34 +49,40 @@ public class MyWishlistFragment extends Fragment {
 
         loadingDialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 //
-        loadingDialog.show();
 
-        ///// loading dialog
+        ///// loading Dialog
+
 
         wishlistRecyclerView = view.findViewById(R.id.my_wishlist_recycler_view);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         wishlistRecyclerView.setLayoutManager(linearLayoutManager);
 
-        if (DBqueries.wishlistModelList.size() == 0){
+
+        if (DBqueries.wishlistModelList.size() == 0) {
+
+            loadingDialog.show();
+
 
             DBqueries.wishlist.clear();
 
             DBqueries.loadWishlist(getContext(), loadingDialog, true);
-         //   loadingDialog.dismiss();
-         //   Toast.makeText(getContext(), "loaded if", Toast.LENGTH_SHORT).show();
+
 
         } else {
-            DBqueries.loadWishlist(getContext(), loadingDialog, true);
-       //     Toast.makeText(getContext(), "loaded else", Toast.LENGTH_SHORT).show();
 
-            //  loadingDialog.dismiss();
+            loadingDialog.show();
+
+            DBqueries.loadWishlist(getContext(), loadingDialog,true);
+
+
         }
 
         wishlistAdapter = new WishlistAdapter(DBqueries.wishlistModelList, true);
         wishlistRecyclerView.setAdapter(wishlistAdapter);
         wishlistAdapter.notifyDataSetChanged();
         loadingDialog.dismiss();
+
         return view;
     }
 

@@ -30,7 +30,7 @@ public class MyRewardsFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_my_rewards, container, false);
 
-        ///// loading dialog
+        ///// loading Dialog
 
         loadingDialog = new Dialog(getContext());
         loadingDialog.setContentView(R.layout.loading_progress_dialog);
@@ -43,7 +43,7 @@ public class MyRewardsFragment extends Fragment {
 
         loadingDialog.show();
 
-        ///// loading dialog
+        ///// loading Dialog
 
         rewardsRecyclerView = view.findViewById(R.id.my_rewards_recyclerview);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());

@@ -154,11 +154,11 @@ public class MainActivity extends AppCompatActivity
 
         signInDialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
-        Button dialogSignInBtn = signInDialog.findViewById(R.id.sign_in_btn);
-//        Button dialogSignUpBtn = signInDialog.findViewById(R.id.sign_up_btn);
+        Button DialogSignInBtn = signInDialog.findViewById(R.id.sign_in_btn);
+//        Button DialogSignUpBtn = signInDialog.findViewById(R.id.sign_up_btn);
         final Intent registerIntent = new Intent(MainActivity.this, RegisterActivity.class);
 
-        dialogSignInBtn.setOnClickListener(new View.OnClickListener() {
+        DialogSignInBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
