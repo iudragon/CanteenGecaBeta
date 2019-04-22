@@ -8,9 +8,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:639046720411:android:9c7134a4489b1bd4",
+        "mobilesdk_app_id": "1:639046720411:android:f49d9e21c2a4d543",
         "android_client_info": {
-          "package_name": "dragon.bakuman.iu.canteen"
+          "package_name": "com.lewokapps.iu.gecacanteen"
         }
       },
       "oauth_client": [
