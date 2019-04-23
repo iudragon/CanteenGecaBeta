@@ -411,7 +411,7 @@ public class HomePageAdapter extends RecyclerView.Adapter {
             horizontalLayoutTitle.setText(title);
 
 
-            if (horizontalProductScrollModelList.size() > 8) {
+            if (horizontalProductScrollModelList.size() > 5) {
 
                 horizontalLayoutViewAllBtn.setVisibility(View.VISIBLE);
                 horizontalLayoutViewAllBtn.setOnClickListener(new View.OnClickListener() {
@@ -477,7 +477,7 @@ public class HomePageAdapter extends RecyclerView.Adapter {
             horizontalLayoutTitleDuplicate.setText(title);
 
 
-            if (horizontalProductScrollModelList.size() > 8) {
+            if (horizontalProductScrollModelList.size() > 5) {
 
                 horizontalLayoutViewAllBtnDuplicate.setVisibility(View.VISIBLE);
                 horizontalLayoutViewAllBtnDuplicate.setOnClickListener(new View.OnClickListener() {
@@ -551,14 +551,14 @@ public class HomePageAdapter extends RecyclerView.Adapter {
             for (int x = 0; x < 6; x++) {
                 ImageView productImage = gridProductLayout.getChildAt(x).findViewById(R.id.h_s_product_image);
                 TextView productTitle = gridProductLayout.getChildAt(x).findViewById(R.id.h_s_product_title);
-                TextView productDescription = gridProductLayout.getChildAt(x).findViewById(R.id.h_s_product_description);
+//                TextView productDescription = gridProductLayout.getChildAt(x).findViewById(R.id.h_s_product_description);
                 TextView productPrice = gridProductLayout.getChildAt(x).findViewById(R.id.h_s_product_price);
 
 
                 Glide.with(itemView.getContext()).load(horizontalProductScrollModelList.get(x).getProductImage()).apply(new RequestOptions().placeholder(R.drawable.placeholdericon)).into(productImage);
 
                 productTitle.setText(horizontalProductScrollModelList.get(x).getProductTitle());
-                productDescription.setText(horizontalProductScrollModelList.get(x).getProductDescription());
+//                productDescription.setText(horizontalProductScrollModelList.get(x).getProductDescription());
                 productPrice.setText("Rs. " + horizontalProductScrollModelList.get(x).getProductPrice() + "/-");
                 gridProductLayout.getChildAt(x).setBackgroundColor(itemView.getContext().getResources().getColor(R.color.colorWhite));
 

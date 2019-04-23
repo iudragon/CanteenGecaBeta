@@ -42,21 +42,21 @@ public class HorizontalProductScrollAdapter extends RecyclerView.Adapter<Horizon
         String resource = horizontalProductScrollModelList.get(position).getProductImage();
 
         String title = horizontalProductScrollModelList.get(position).getProductTitle();
-        String description = horizontalProductScrollModelList.get(position).getProductDescription();
+//        String description = horizontalProductScrollModelList.get(position).getProductDescription();
         String price = horizontalProductScrollModelList.get(position).getProductPrice();
 
         String productId = horizontalProductScrollModelList.get(position).getProductID();
 
-        viewHolder.setData(productId, resource, title, description, price);
+        viewHolder.setData(productId, resource, title, price);
 
     }
 
     @Override
     public int getItemCount() {
 
-        if (horizontalProductScrollModelList.size() > 8) {
+        if (horizontalProductScrollModelList.size() > 5) {
 
-            return 8;
+            return 5;
         } else {
 
             return horizontalProductScrollModelList.size();
@@ -70,7 +70,7 @@ public class HorizontalProductScrollAdapter extends RecyclerView.Adapter<Horizon
 
         private ImageView productImage;
         private TextView productTitle;
-        private TextView productDescription;
+//        private TextView productDescription;
         private TextView productPrice;
 
 
@@ -79,18 +79,18 @@ public class HorizontalProductScrollAdapter extends RecyclerView.Adapter<Horizon
 
             productImage = itemView.findViewById(R.id.h_s_product_image);
             productTitle = itemView.findViewById(R.id.h_s_product_title);
-            productDescription = itemView.findViewById(R.id.h_s_product_description);
+//            productDescription = itemView.findViewById(R.id.h_s_product_description);
             productPrice = itemView.findViewById(R.id.h_s_product_price);
 
         }
 
-        private void setData(final String productId, String resource, String title, String description, String price) {
+        private void setData(final String productId, String resource, String title, String price) {
 
             Glide.with(itemView.getContext()).load(resource).apply(new RequestOptions().placeholder(R.drawable.placeholdericonmini)).into(productImage);
 
             productPrice.setText("Rs. " + price + "/-");
 
-            productDescription.setText(description);
+//            productDescription.setText(description);
 
             productTitle.setText(title);
 

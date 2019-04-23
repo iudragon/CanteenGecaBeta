@@ -1,11 +1,15 @@
 package com.lewokapps.iu.gecacanteen;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import java.text.SimpleDateFormat;
@@ -17,6 +21,7 @@ import com.lewokapps.iu.gecacanteen.model.RewardModel;
 public class MyRewardsAdapter extends RecyclerView.Adapter<MyRewardsAdapter.ViewHolder> {
 
     private List<RewardModel> rewardModelList;
+
 
     private Boolean useMiniLayout = false;
 
@@ -65,6 +70,7 @@ public class MyRewardsAdapter extends RecyclerView.Adapter<MyRewardsAdapter.View
         private TextView couponTitle;
         private TextView couponExpirydDate;
         private TextView couponBody;
+        private ImageView couponIconViewRewards;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -72,6 +78,7 @@ public class MyRewardsAdapter extends RecyclerView.Adapter<MyRewardsAdapter.View
             couponTitle = itemView.findViewById(R.id.coupon_title);
             couponExpirydDate = itemView.findViewById(R.id.coupon_validity);
             couponBody = itemView.findViewById(R.id.coupon_body);
+            couponIconViewRewards = itemView.findViewById(R.id.coupon_icon);
 
         }
 
@@ -88,6 +95,56 @@ public class MyRewardsAdapter extends RecyclerView.Adapter<MyRewardsAdapter.View
 
             } else {
                 couponExpirydDate.setText(lowerLimit + type + upperLimit);
+            }
+
+            if (type.contains("Update")) {
+
+                couponIconViewRewards.setImageResource(R.drawable.ic_touch_app);
+
+                itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent();
+                        intent.setAction(Intent.ACTION_VIEW);
+                        intent.addCategory(Intent.CATEGORY_BROWSABLE);
+                        intent.setData(Uri.parse("https://play.google.com/store/apps/details?id=com.lewokapps.iu.gecacanteen"));
+                        itemView.getContext().startActivity(intent);
+                    }
+                });
+            }
+
+            if (type.contains("Location")) {
+
+                couponIconViewRewards.setImageResource(R.drawable.ic_touch_app);
+
+                itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent();
+                        intent.setAction(Intent.ACTION_VIEW);
+                        intent.addCategory(Intent.CATEGORY_BROWSABLE);
+                        intent.setData(Uri.parse("https://goo.gl/maps/scQzbUgu9PdkSyJ5A"));
+                        itemView.getContext().startActivity(intent);
+                    }
+                });
+            }
+
+            if (type.contains("Feedback")) {
+
+                couponIconViewRewards.setImageResource(R.drawable.ic_touch_app);
+
+                itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:" + "canteengeca@gmail.com"));
+                        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Feedback Geca Canteen");
+                        emailIntent.putExtra(Intent.EXTRA_TEXT, "GECA Canteen app");
+//emailIntent.putExtra(Intent.EXTRA_HTML_TEXT, body); //If you are using HTML in your body text
+
+                        itemView.getContext().startActivity(Intent.createChooser(emailIntent, "Chooser Title"));
+                    }
+                });
             }
 
             couponBody.setText(body);
