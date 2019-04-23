@@ -200,6 +200,9 @@ public class DBqueries {
         loadingDialog.setContentView(R.layout.loading_progress_dialog);
 
         loadingDialog.setCancelable(false);
+
+        loadingDialog.getWindow().setBackgroundDrawable(context.getDrawable(R.drawable.slider_background));
+
         loadingDialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         if (!((Activity) context).isFinishing()) {
             loadingDialog.show();
@@ -259,6 +262,7 @@ public class DBqueries {
                             loadingDialog.setContentView(R.layout.loading_progress_dialog);
 
                             loadingDialog.setCancelable(false);
+                            loadingDialog.getWindow().setBackgroundDrawable(context.getDrawable(R.drawable.slider_background));
 
                             loadingDialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                             if (!((Activity) context).isFinishing()) {
@@ -335,6 +339,7 @@ public class DBqueries {
         loadingDialog.setContentView(R.layout.loading_progress_dialog);
 
         loadingDialog.setCancelable(false);
+        loadingDialog.getWindow().setBackgroundDrawable(context.getDrawable(R.drawable.slider_background));
         loadingDialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
         if (!((Activity) context).isFinishing()) {
@@ -396,7 +401,7 @@ public class DBqueries {
                             loadingDialog.setContentView(R.layout.loading_progress_dialog);
 
                             loadingDialog.setCancelable(false);
-
+                            loadingDialog.getWindow().setBackgroundDrawable(context.getDrawable(R.drawable.slider_background));
                             loadingDialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                             if (!((Activity) context).isFinishing()) {
                                 loadingDialog.show();
@@ -478,8 +483,8 @@ public class DBqueries {
         loadingDialog.setContentView(R.layout.loading_progress_dialog);
 
         loadingDialog.setCancelable(false);
+        loadingDialog.getWindow().setBackgroundDrawable(context.getDrawable(R.drawable.slider_background));
 
-        //  loadingDialog.getWindow().setBackgroundDrawable(getDrawable(R.drawable.slider_background));
         loadingDialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
         if (!((Activity) context).isFinishing()) {
@@ -557,8 +562,7 @@ public class DBqueries {
         loadingDialog.setContentView(R.layout.loading_progress_dialog);
 
         loadingDialog.setCancelable(false);
-
-        //  loadingDialog.getWindow().setBackgroundDrawable(getDrawable(R.drawable.slider_background));
+        loadingDialog.getWindow().setBackgroundDrawable(context.getDrawable(R.drawable.slider_background));
         loadingDialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
         if (!((Activity) context).isFinishing()) {
