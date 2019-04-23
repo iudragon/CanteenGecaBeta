@@ -79,10 +79,13 @@ public class SignInFragment extends Fragment {
 
         if (disableCloseBtn) {
 
-            closeBtn.setVisibility(View.GONE);
+            closeBtn.setVisibility(View.VISIBLE); ////// CHANGE HERE
+
+
         } else {
 
             closeBtn.setVisibility(View.VISIBLE);
+
         }
 
         return view;
@@ -108,12 +111,25 @@ public class SignInFragment extends Fragment {
             }
         });
 
-        closeBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mainIntent();
-            }
-        });
+        if (disableCloseBtn){
+            closeBtn.setText("GO BACK");
+            closeBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mainIntent();
+                }
+            });
+        } else {
+            closeBtn.setText("OPEN APP");
+            closeBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mainIntent();
+                }
+            });
+        }
+
+
 
         email.addTextChangedListener(new TextWatcher() {
             @Override
