@@ -411,7 +411,7 @@ public class HomePageAdapter extends RecyclerView.Adapter {
             horizontalLayoutTitle.setText(title);
 
 
-            if (horizontalProductScrollModelList.size() > 5) {
+            if (horizontalProductScrollModelList.size() > 8) {
 
                 horizontalLayoutViewAllBtn.setVisibility(View.VISIBLE);
                 horizontalLayoutViewAllBtn.setOnClickListener(new View.OnClickListener() {
@@ -477,7 +477,7 @@ public class HomePageAdapter extends RecyclerView.Adapter {
             horizontalLayoutTitleDuplicate.setText(title);
 
 
-            if (horizontalProductScrollModelList.size() > 5) {
+            if (horizontalProductScrollModelList.size() > 8) {
 
                 horizontalLayoutViewAllBtnDuplicate.setVisibility(View.VISIBLE);
                 horizontalLayoutViewAllBtnDuplicate.setOnClickListener(new View.OnClickListener() {
